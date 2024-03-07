@@ -8,7 +8,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh "mvn -B -DskipTests clean install"
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn -B -DskipTests clean install"
                 }
             }
         }
