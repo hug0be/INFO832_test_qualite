@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.8.1</version>
@@ -59,4 +64,17 @@
         </plugins>
     </reporting>
 
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>
+                    http://gpu-epu.univ-savoie.fr:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
 </project>
