@@ -13,6 +13,7 @@ public class DateTimer  implements Timer {
 	 * Constructs a new DateTimer object.
 	 *
 	 * @param dates a set of dates
+	 * @see feur
 	 */
 	public DateTimer(TreeSet<Integer> dates) {
 		this.lapsTimes = new Vector<Integer>();
