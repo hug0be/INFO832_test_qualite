@@ -2,8 +2,12 @@ package timer;
 
 import java.util.Iterator;
 
-public interface Timer extends Iterator<Integer>{
-	/*
+/**
+ * The Timer interface extends the Iterator interface and represents a timer that provides delay times as integers.
+ * It defines a method to retrieve the next delay time.
+ */
+ public interface Timer extends Iterator<Integer>{
+	/**
 	 * return the delay time
 	 * @see java.util.Iterator#next()
 	 */

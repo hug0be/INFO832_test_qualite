@@ -18,11 +18,24 @@ import timer.Timer;
  * @see DiscreteActionInterface
  */
 public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
-	
+
+	/**
+	 * The action to be executed when the entity is turned on.
+	 * This action should implement the DiscreteActionInterface.
+	 */
 	protected DiscreteActionInterface onAction;
+
+	/**
+	 * The action to be executed when the entity is turned off.
+	 * This action should implement the DiscreteActionInterface.
+	 */
 	protected DiscreteActionInterface offAction;
+
+	/**
+	 * The current action associated with the entity.
+	 * This action can either be the onAction or offAction based on the current state of the entity.
+	 */
 	protected DiscreteActionInterface currentAction;
-	
 	private Integer currentLapsTime;
 	private Integer lastOffDelay=0;
 

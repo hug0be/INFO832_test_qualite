@@ -17,11 +17,27 @@ import timer.Timer;
  */
 //TODO Must be refactored to be generic
 public class DiscreteActionDependent implements DiscreteActionInterface {
-	
+
+	/**
+	 * The base action associated with this composite action.
+	 */
 	protected DiscreteAction baseAction;
+
+	/**
+	 * The set of dependent actions that need to be executed along with the base action.
+	 */
 	protected TreeSet<DiscreteAction> depedentActions;
+
+	/**
+	 * An iterator over the dependent actions set.
+	 */
 	private Iterator<DiscreteAction> it;
+
+	/**
+	 * The current action being executed.
+	 */
 	protected DiscreteAction currentAction;
+
 
 
 	/**

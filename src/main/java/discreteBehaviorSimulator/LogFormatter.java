@@ -7,11 +7,15 @@ import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 
 /**
- * @author Flavien Vernier
+ * The LogFormatter class is a formatter for logging records in a customized format.
+ * It extends the Formatter class provided by the java.util.logging package.
  *
+ * This formatter formats log records by including the timestamp, log level, and log message.
+ *
+ * @author Flavien Vernier
  */
 public class LogFormatter  extends Formatter {
-	
+
 	/**
 	* This method is used to format a log record.
 	* 

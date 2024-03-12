@@ -4,16 +4,31 @@ import java.util.Random;
 import java.util.Vector;
 
 /**
- * @author Flavien Vernier
+ * The RandomTimer class represents a timer that generates random time intervals based on different distributions.
+ * It implements the Timer interface.
+ * <p>
+ * This class supports four types of random distributions: Poisson, Exponential, Possibilist, and Gaussian.
+ * <p>
+ * RandomTimer instances can be constructed with different distribution types and parameters.
  *
+ * @author Flavien Vernier
  */
 
 
-
 public class RandomTimer implements Timer {
-	
+
+	/**
+	 * Enumeration representing different random distributions supported by RandomTimer.
+	 */
 	public static enum randomDistribution {
-		POISSON, EXP, POSIBILIST, GAUSSIAN;
+		/** Poisson distribution. */
+		POISSON,
+		/** Exponential distribution. */
+		EXP,
+		/** Possibilist distribution. */
+		POSIBILIST,
+		/** Gaussian distribution. */
+		GAUSSIAN;
 	}
 	
 	//private static String randomDistributionString[] = {"POISSON", "EXP", "POSIBILIST", "GAUSSIAN"};
@@ -29,7 +44,7 @@ public class RandomTimer implements Timer {
 	/**
 	 * transform a string into a distribution
 	 *
-	 * @param distributionName
+	 * @param distributionName the name of the distribution to create
 	 * @return a distribution
 	 */
 	public static randomDistribution string2Distribution(String distributionName){
@@ -39,7 +54,7 @@ public class RandomTimer implements Timer {
 	/**
 	 * transform a distribution into a string
 	 *
-	 * @param distribution
+	 * @param distribution distribution to transform into string
 	 * @return a string
 	 */
 	public static String distribution2String(randomDistribution distribution){
@@ -51,7 +66,7 @@ public class RandomTimer implements Timer {
 	 *
 	 * @param distribution the distribution to use
 	 * @param param a parameter used to define means
-	 * @throws Exception
+	 * @throws Exception bad Timer
 	 */
 	public RandomTimer(randomDistribution distribution, double param) throws Exception{
 		if(distribution == randomDistribution.EXP ){
@@ -77,7 +92,7 @@ public class RandomTimer implements Timer {
 	 * @param distribution the distribution to use
 	 * @param lolim lower limit
 	 * @param hilim high limit
-	 * @throws Exception
+	 * @throws Exception bad timer
 	 */
 	public RandomTimer(randomDistribution distribution, int lolim, int hilim) throws Exception{
 		if(distribution == randomDistribution.POSIBILIST || distribution == randomDistribution.GAUSSIAN){

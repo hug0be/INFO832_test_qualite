@@ -4,6 +4,10 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import java.util.Vector;
 
+/**
+ * The DateTimer class implements the Timer interface and represents a timer based on dates or lap times.
+ * It can be constructed with either a set of dates or a set of elapsed times between events.
+ */
 public class DateTimer  implements Timer {
 	
 	Vector<Integer> lapsTimes;

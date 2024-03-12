@@ -14,9 +14,22 @@ import action.DiscreteActionInterface;
 
 
 /**
+ * The DiscreteActionSimulator class simulates the execution of discrete actions over time.
+ * It manages a list of discrete actions and executes them based on their defined laps times.
+ * Actions are executed sequentially, and the simulation can run for a finite or infinite number of loops.
+ * <p>
+ * This simulator provides functionalities to:
+ * - Start and stop the simulation.
+ * - Set the number of loops for the simulation.
+ * - Add actions to the list of actions.
+ * - Retrieve the current laps time before the next action.
+ * <p>
+ * The simulator uses a logger for logging simulation events and a global time instance to synchronize action execution.
+ *
  * @author Tiphaine Bulou (2016)
  * @author Flavien Vernier
- *
+ * @see DiscreteActionInterface
+ * @see Clock
  */
 public class DiscreteActionSimulator implements Runnable {
 

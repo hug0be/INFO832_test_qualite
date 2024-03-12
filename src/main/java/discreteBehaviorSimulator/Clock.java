@@ -5,7 +5,18 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
+/**
+ * The Clock class represents a virtual clock used in simulations.
+ * It manages time and notifies observers about time changes.
+ * <p>
+ * Clock is implemented as a singleton pattern.
+ * <p>
+ * The clock can be set as virtual or real time.
+ * <p>
+ * Clock supports adding and removing observers to get notified about time changes.
+ *
+ * @author Flavien Vernier
+ */
 public class Clock {
 	private static Clock instance = null;
 	

@@ -1,6 +1,22 @@
 package timer;
 
-public class PeriodicTimer implements Timer {
+/**
+ * The PeriodicTimer class represents a timer that generates periodic time intervals.
+ * It implements the Timer interface.
+ * <p>
+ * A PeriodicTimer object can be constructed with a fixed period, indicating the time interval between each occurrence.
+ * Additionally, a PeriodicTimer object can be constructed with a more-or-less random timer, allowing for variations
+ * in the occurrence time of each period.
+ * <p>
+ * Example usage:
+ * <pre>
+ * // Create a PeriodicTimer with a fixed period of 100 units
+ * PeriodicTimer timer = new PeriodicTimer(100);
+ * // Generate the next time interval
+ * int interval = timer.next();
+ * </pre>
+ */
+ public class PeriodicTimer implements Timer {
 
 	private int period;
 	private int next;
@@ -9,7 +25,7 @@ public class PeriodicTimer implements Timer {
 	/**
 	 * Construct a PeriodicTimer object.
 	 *
-	 * @param at
+	 * @param at periodic time
 	 */
 	public PeriodicTimer(int at) {
 		this.period = at;
@@ -19,8 +35,8 @@ public class PeriodicTimer implements Timer {
 	/**
 	 * set next to a time more or less a random timer
 	 *
-	 * @param at
-	 * @param moreOrLess
+	 * @param at periodic time
+	 * @param moreOrLess random number tu subtract or add
 	 */
 	@Deprecated
 	public PeriodicTimer(int at, RandomTimer moreOrLess) {
@@ -32,8 +48,8 @@ public class PeriodicTimer implements Timer {
 	/**
 	 * Construct a PeriodicTimer object.
 	 *
-	 * @param period
-	 * @param at
+	 * @param period periodic time
+	 * @param at next periodic time
 	 */
 	public PeriodicTimer(int period, int at) {
 		this.period = period;
@@ -43,9 +59,9 @@ public class PeriodicTimer implements Timer {
 	/**
 	 * set next to a time more or less a random timer and set a period
 	 *
-	 * @param period
-	 * @param at
-	 * @param moreOrLess
+	 * @param period next periodic time
+	 * @param at periodic time
+	 * @param moreOrLess random number tu subtract or add
 	 */
 	@Deprecated
 	public PeriodicTimer(int period, int at, RandomTimer moreOrLess) {

@@ -6,6 +6,11 @@ import java.util.Iterator;
 /*
  * TODO must implement Iterator<Action>
  */
+
+/**
+ * The DiscreteActionInterface represents a discrete action that can be executed.
+ * It extends the Comparable interface and implements the Iterator interface.
+ */
 public interface DiscreteActionInterface extends Comparable<DiscreteActionInterface>, Iterator<DiscreteActionInterface>{
 
 	/**
