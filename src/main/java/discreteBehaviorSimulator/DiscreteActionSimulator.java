@@ -35,6 +35,10 @@ public class DiscreteActionSimulator implements Runnable {
 	private FileHandler logFile; 
 	private ConsoleHandler logConsole; 
 
+	/**
+	* Constructor for the DiscreteActionSimulator class,
+	* starts a logger and a thread.
+	*/
 	public DiscreteActionSimulator(){
 		
 		// Start logger
@@ -61,6 +65,8 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 	
 	/**
+	 * Sets the number of loops for the simulation, which can be finite or infinite.
+	 * 
 	 * @param nbLoop defines the number of loop for the simulation, the simulation is infinite if nbLoop is negative or 0.
 	 */
 	public void setNbLoop(int nbLoop){
@@ -73,6 +79,11 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 	}
 	
+	/**
+	* Adds an action to the list of actions.
+	*
+	* @param  c  object implementing the DiscreteActionInterface
+	*/
 	public void addAction(DiscreteActionInterface c){
 
 		if(c.hasNext()) {
@@ -89,6 +100,8 @@ public class DiscreteActionSimulator implements Runnable {
 	}*/
 
 	/**
+	 * Returns the current laps time before the next action.
+	 * 
 	 * @return the laps time before the next action
 	 */
 	private int nextLapsTime() {
@@ -96,7 +109,10 @@ public class DiscreteActionSimulator implements Runnable {
 		return currentAction.getCurrentLapsTime();
 	}
 	/**
+	 * Runs the next action in the stored list.
+	 * 
 	 * @return laps time of the running action
+	 * @see information about the ran action.
 	 */
 	private int runAction(){
 		// Run the first action
@@ -133,6 +149,12 @@ public class DiscreteActionSimulator implements Runnable {
 		return sleepTime;
 	}
 
+	/**
+	* Updates the time of all actions stored in the list.
+	*
+	* @param  runningTimeOf1stCapsul  time for the simulator to spend
+	* @see    information about the reset action if present.
+	*/
 	private void updateTimes(int runningTimeOf1stCapsul){
 		
 		// update time laps off all actions
@@ -172,7 +194,11 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 	}
 
-
+	/**
+	* Runs the simulation for the set amount of loops;
+	*
+	* @see  the number of actions done and the end loop if earlier than the specified amount
+	*/
 	public void run() {
 		int count = this.nbLoop;
 		boolean finished = false;
@@ -213,16 +239,28 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 	}
 
+	/**
+	* Starts the thread.
+	*/
 	public void start(){
 		this.running = true;
 		this.t.start();
 	}
 
+	/**
+	* Stops the thread.
+	*/
 	public void stop(){
 		System.out.println("STOP THREAD " + t.getName() + "obj " + this);
 		this.running = false;
 	}
 	
+	/**
+	* Displays the actions stored in the list and their amount.
+	* 
+	* @see ehe amount of actions in the action list
+	* @see each action in the action list
+	*/
 	public String toString(){
 		StringBuffer toS = new StringBuffer("------------------\nTestAuto :" + this.actionsList.size());
 		for(DiscreteActionInterface c : this.actionsList){
@@ -232,6 +270,11 @@ public class DiscreteActionSimulator implements Runnable {
 		return toS.toString();
 	}
 
+	/**
+	* Assesses the run state of the simulator.
+	* 
+	* @return boolean representing whether the simulator is running or not.
+	*/
 	public boolean getRunning() {
 		return this.running;
 	}

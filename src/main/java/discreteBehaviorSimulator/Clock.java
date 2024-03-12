@@ -17,6 +17,9 @@ public class Clock {
 	
 	private Set<ClockObserver> observers;
 	
+	/**
+	* Constructor for the Clock class, initializing time and nextJump at 0.
+	*/
 	private Clock() {
 		this.time = 0;
 		this.nextJump=0;
@@ -25,6 +28,11 @@ public class Clock {
 		this.observers = new HashSet<ClockObserver>();
 	}
 	
+	/**
+	* Returns the instance of the Clock class.
+	*
+	* @return      the Clock instance
+	*/
 	public static Clock getInstance() {
 		if (Clock.instance == null) {
 			Clock.instance = new Clock();
@@ -32,20 +40,47 @@ public class Clock {
 		return Clock.instance;
 	}
 	
+	/**
+	* Adds an observer to the Clock.
+	*
+	* @param  o  the ClockObserver to add
+	*/
 	public void addObserver(ClockObserver o) {
 		this.observers.add(o);
 	}
+	
+	/**
+	* Removes an observer from the Clock.
+	*
+	* @param  o  the ClockObserver to remove
+	*/
 	public void removeObserver(ClockObserver o) {
 		this.observers.remove(o);
 	}
 	
+	/**
+	* Sets the virtual status.
+	*
+	* @param  virtual  Boolean to set the virtual status to
+	*/
 	public void setVirtual(boolean virtual) {
 		this.virtual = virtual;
 	}
+	
+	/**
+	* Returns True if the Clock is virtual, False if not.
+	*
+	* @return      boolean representing the virtual state.
+	*/
 	public boolean isVirtual() {
 		return this.virtual;
 	}
 	
+	/**
+	* Sets the next jump and informs all the observers.
+	*
+	* @param  nextJump  Integer representing the next jump time.
+	*/
 	public void setNextJump(int nextJump) {
 		this.nextJump = nextJump;
 		for(ClockObserver o:this.observers) {
@@ -65,6 +100,13 @@ public class Clock {
 		}
 		this.lock.unlock();
 	}*/
+	
+	/**
+	* Increases the time of the Clock to the next jump.
+	*
+	* @param  time  the time to increase to
+	* @throws      unexpected time change if the time parameter is different from the next jump
+	*/
 	public void increase(int time) throws Exception {
 
 		this.lockWriteAccess();
@@ -78,6 +120,12 @@ public class Clock {
 		}
 		this.unlockWriteAccess();
 	}
+	
+	/**
+	* Returns the current time of the Clock.
+	*
+	* @return      current time of the Clock in type long
+	*/
 	public long getTime() {
 		if(this.virtual) {
 			return this.time;
@@ -86,21 +134,39 @@ public class Clock {
 		}
 	}
 	
+	/**
+	* Locks the read access to the Clock.
+	*/
 	public void lockReadAccess() {
 		this.lock.readLock().lock();
 	}
 	
+	/**
+	* Unlocks the read access to the Clock.
+	*/
 	public void unlockReadAccess() {
 		this.lock.readLock().unlock();
 	}
 	
+	/**
+	* Locks the write access to the Clock.
+	*/
 	public void lockWriteAccess() {
 		this.lock.writeLock().lock();
 	}
+	
+	/**
+	* Unlocks the write access to the Clock.
+	*/
 	public void unlockWriteAccess() {
 		this.lock.writeLock().unlock();		
 	}
 	
+	/**
+	* Returns the current time of the clock.
+	*
+	* @return   current time of the clock in type String
+	*/
 	public String toString() {
 		return ""+this.time;
 	}
