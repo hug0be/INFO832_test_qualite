@@ -5,17 +5,22 @@ public class PeriodicTimer implements Timer {
 	private int period;
 	private int next;
 	private RandomTimer moreOrLess = null;
-	
+
+	/**
+	 * Construct a PeriodicTimer object.
+	 *
+	 * @param at
+	 */
 	public PeriodicTimer(int at) {
 		this.period = at;
 		this.next = at;
 	}
 	
 	/**
+	 * set next to a time more or less a random timer
+	 *
 	 * @param at
 	 * @param moreOrLess
-	 * 
-	 * use MergedTimer instead
 	 */
 	@Deprecated
 	public PeriodicTimer(int at, RandomTimer moreOrLess) {
@@ -23,18 +28,24 @@ public class PeriodicTimer implements Timer {
 		this.moreOrLess = moreOrLess;
 		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
 	}
-	
+
+	/**
+	 * Construct a PeriodicTimer object.
+	 *
+	 * @param period
+	 * @param at
+	 */
 	public PeriodicTimer(int period, int at) {
 		this.period = period;
 		this.next = at;
 	}
 	
 	/**
+	 * set next to a time more or less a random timer and set a period
+	 *
 	 * @param period
 	 * @param at
 	 * @param moreOrLess
-	 * 
-	 * use MergedTimer instead
 	 */
 	@Deprecated
 	public PeriodicTimer(int period, int at, RandomTimer moreOrLess) {
@@ -42,12 +53,21 @@ public class PeriodicTimer implements Timer {
 		this.moreOrLess = moreOrLess;
 		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
 	}
-	
+
+	/**
+	 * return the period
+	 *
+	 * @return period
+	 */
 	public int getPeriod() {
 		return this.period;
 	}
-	
-	
+
+	/**
+	 * return the next number with a random parameter
+	 *
+	 * @return next the next number
+	 */
 	@Override
 	public Integer next() {
 		
@@ -77,6 +97,11 @@ public class PeriodicTimer implements Timer {
 		return next;
 	}*/
 
+	/**
+	 * return if the timer has a next number
+	 *
+	 * @return true
+	 */
 	@Override
 	public boolean hasNext() {
 		return true;

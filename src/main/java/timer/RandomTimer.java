@@ -25,18 +25,33 @@ public class RandomTimer implements Timer {
 	private double lolim;
 	private double hilim; 
 	//private int width; 
-	
-	
+
+	/**
+	 * transform a string into a distribution
+	 *
+	 * @param distributionName
+	 * @return a distribution
+	 */
 	public static randomDistribution string2Distribution(String distributionName){
 		return RandomTimer.randomDistribution.valueOf(RandomTimer.randomDistribution.class, distributionName.toUpperCase());
-	}	
+	}
+
+	/**
+	 * transform a distribution into a string
+	 *
+	 * @param distribution
+	 * @return a string
+	 */
 	public static String distribution2String(randomDistribution distribution){
 		return distribution.name();
 	}
-	
+
 	/**
-	 * @param param constraint 
-	 * @throws Exception 
+	 * Construct a random timer object.
+	 *
+	 * @param distribution the distribution to use
+	 * @param param a parameter used to define means
+	 * @throws Exception
 	 */
 	public RandomTimer(randomDistribution distribution, double param) throws Exception{
 		if(distribution == randomDistribution.EXP ){
@@ -55,9 +70,14 @@ public class RandomTimer implements Timer {
 			throw new Exception("Bad Timer constructor for selected distribution");
 		}
 	}
+
 	/**
-	 * @param min/max constraint
-	 * @throws Exception 
+	 * Construct a random timer object with time limits
+	 *
+	 * @param distribution the distribution to use
+	 * @param lolim lower limit
+	 * @param hilim high limit
+	 * @throws Exception
 	 */
 	public RandomTimer(randomDistribution distribution, int lolim, int hilim) throws Exception{
 		if(distribution == randomDistribution.POSIBILIST || distribution == randomDistribution.GAUSSIAN){
@@ -70,11 +90,21 @@ public class RandomTimer implements Timer {
 			throw new Exception("Bad Timer constructor for selected distribution");
 		}
 	}
-	
+
+	/**
+	 * return the name of the distribution
+	 *
+	 * @return name
+	 */
 	public String getDistribution(){
 		return this.distribution.name();
 	}
-	
+
+	/**
+	 * toString method for distribution parameters
+	 *
+	 * @return a string with information
+	 */
 	public String getDistributionParam() {
 		if(distribution == randomDistribution.EXP ){
 			return "rate: " + this.rate;
@@ -86,11 +116,21 @@ public class RandomTimer implements Timer {
 		
 		return "null";
 	}
-	
+
+	/**
+	 * return the mean
+	 *
+	 * @return mean
+	 */
 	public double getMean(){
 		return this.mean;
 	}
-	
+
+	/**
+	 * toString method for distribution parameters
+	 *
+	 * @return a string with information
+	 */
 	public String toString(){
 		String s = this.getDistribution();
 		switch (this.distribution){
@@ -110,10 +150,11 @@ public class RandomTimer implements Timer {
 		
 		return s;
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see methodInvocator.Timer#next()
+	/**
+	 * return next integer
+	 *
+	 * @return integer
 	 */
 	@Override
 	public Integer next(){
@@ -141,27 +182,30 @@ public class RandomTimer implements Timer {
 	public Integer next(int since){
 		return this.next();
 	}*/
-	
+
 	/**
-	 * Give good mean
-	 * Give wrong variance  
+	 * Give mean and variance
+	 *
+	 * @return mean and variance
 	 */
 	private int nextTimePosibilist(){
 	    return (int)this.lolim + (int)(this.r.nextDouble() * (this.hilim - this.lolim));
 	}
-	
+
 	/**
-	 * Give good mean
-	 * Give wrong variance  
+	 * Give mean and variance
+	 *
+	 * @return mean and variance
 	 */
 	private int nextTimeExp(){
 	    return (int)(-Math.log(1.0 - this.r.nextDouble()) / this.rate);
 	}
-	
-	
+
+
 	/**
-	 * Give good mean
-	 * Give good variance
+	 * Give mean and variance
+	 *
+	 * @return mean and variance
 	 */
 	private int nextTimePoisson() {
 	    
@@ -173,14 +217,22 @@ public class RandomTimer implements Timer {
 	        k++;
 	    } while (p > L);
 	    return k - 1;
-	}   		
-	    
-	
+	}
+
+	/**
+	 * Give mean and variance
+	 *
+	 * @return mean and variance
+	 */
 	private int nextTimeGaussian(){
 		return (int)this.lolim + (int)((this.r.nextGaussian() + 1.0)/2.0 * (this.hilim - this.lolim));
 	}
-	
-	
+
+	/**
+	 * return if there is a next time
+	 *
+	 * @return true
+	 */
 	@Override
 	public boolean hasNext() {
 		return true;

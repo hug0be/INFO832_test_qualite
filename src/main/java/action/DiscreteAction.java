@@ -84,9 +84,9 @@ public class DiscreteAction implements DiscreteActionInterface {
 	// ATTRIBUTION
 	/**
 	 * Subtracts a certain time from the attribute lapsTime.
+	 * display getCurrentLapsTime()
 	 *
 	 * @param t time to remove
-	 * @see #getCurrentLapsTime()
 	 */
 	public void spendTime(int t) {
 		Integer old = this.lapsTime;

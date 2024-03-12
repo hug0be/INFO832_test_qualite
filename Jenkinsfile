@@ -27,8 +27,16 @@ pipeline {
 //                 }
 //             }
         }
+        stage('Javadoc') {
+            steps {
+                script {
+                    def maven = tool 'Maven'
+                    sh "${maven}/bin/mvn javadoc:javadoc"
+                }
+            }
+        }
 
-        stage('Coverage') {
+        stage('SonarCube') {
             steps {
                 script {
                     def maven = tool 'Maven'
