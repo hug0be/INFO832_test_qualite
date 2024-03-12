@@ -109,10 +109,9 @@ public class DiscreteActionSimulator implements Runnable {
 		return currentAction.getCurrentLapsTime();
 	}
 	/**
-	 * Runs the next action in the stored list.
+	 * Runs the next action in the stored list and display its information.
 	 * 
 	 * @return laps time of the running action
-	 * @see information about the ran action.
 	 */
 	private int runAction(){
 		// Run the first action
@@ -150,10 +149,9 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 
 	/**
-	* Updates the time of all actions stored in the list.
+	* Updates the time of all actions stored in the list and displays information about the reset action if present.
 	*
 	* @param  runningTimeOf1stCapsul  time for the simulator to spend
-	* @see    information about the reset action if present.
 	*/
 	private void updateTimes(int runningTimeOf1stCapsul){
 		
@@ -195,9 +193,7 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 
 	/**
-	* Runs the simulation for the set amount of loops;
-	*
-	* @see  the number of actions done and the end loop if earlier than the specified amount
+	* Runs the simulation for the set amount of loops and displays the number of actions done and the end loop if earlier than the specified amount.
 	*/
 	public void run() {
 		int count = this.nbLoop;
@@ -257,9 +253,6 @@ public class DiscreteActionSimulator implements Runnable {
 	
 	/**
 	* Displays the actions stored in the list and their amount.
-	* 
-	* @see ehe amount of actions in the action list
-	* @see each action in the action list
 	*/
 	public String toString(){
 		StringBuffer toS = new StringBuffer("------------------\nTestAuto :" + this.actionsList.size());
