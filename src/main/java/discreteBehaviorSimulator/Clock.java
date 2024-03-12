@@ -105,7 +105,7 @@ public class Clock {
 	* Increases the time of the Clock to the next jump.
 	*
 	* @param  time  the time to increase to
-	* @throws      unexpected time change if the time parameter is different from the next jump
+	* @throws Exception time change if the time parameter is different from the next jump
 	*/
 	public void increase(int time) throws Exception {
 

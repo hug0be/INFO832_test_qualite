@@ -15,7 +15,7 @@ public class LogFormatter  extends Formatter {
 	/**
 	* This method is used to format a log record.
 	* 
-	* @param a LogRecord object
+	* @param rec LogRecord object
 	* @return the contents of the log record in type String
 	*/
 	public String format(LogRecord rec) {
@@ -30,11 +30,11 @@ public class LogFormatter  extends Formatter {
 		
 		return buf.toString();
 	}
-	
+
 	/**
 	* Calculates and formats the date.
-	* 
-	* @param milliseconds in type long
+	*
+	* @param millisecs in type long
 	* @return the corresponding date in type String
 	*/
 	private String calcDate(long millisecs) {
@@ -48,7 +48,7 @@ public class LogFormatter  extends Formatter {
 	  /**
 	  * This method is called just after the handler using this. formatter is created
 	  * 
-	  * @param a Handler object
+	  * @param h Handler object
 	  * @return an empty String
 	  */
 	  public String getHead(Handler h) {
@@ -60,7 +60,7 @@ public class LogFormatter  extends Formatter {
 	  /**
 	  * This method is called jus after the handler using this. formatter is closed
 	  * 
-	  * @param a Handler object
+	  * @param h Handler object
 	  * @return an empty String
 	  */
 	  public String getTail(Handler h) {

@@ -19,7 +19,7 @@ public class MergedTimer implements Timer{
 	/**
 	 * Verify if timers are empty
 	 *
-	 * @return timer1.hasNext() && timer2.hasNext() if both timers are finished
+	 * @return if both timers are finished
 	 */
 	@Override
 	public boolean hasNext() {
