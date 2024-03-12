@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     def maven = tool 'Maven'
-                    sh "${maven}/bin/mvn javadoc:javadoc -X"
+                    sh "${maven}/bin/mvn javadoc:javadoc -x"
                 }
             }
         }
