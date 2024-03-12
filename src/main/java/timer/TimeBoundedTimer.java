@@ -10,6 +10,13 @@ public class TimeBoundedTimer implements Timer {
 	private int time=0;
 	private boolean hasNext;
 
+	/**
+	 * Construct a TimeBoundedTimer object.
+	 *
+	 * @param timer2bound
+	 * @param startTime
+	 * @param stopTime
+	 */
 	public TimeBoundedTimer(Timer timer2bound, int startTime, int stopTime) {
 		this.timer2bound = timer2bound;
 		this.startTime = startTime;
@@ -17,13 +24,22 @@ public class TimeBoundedTimer implements Timer {
 		this.init();
 	}
 
+	/**
+	 * Construct a TimeBoundedTimer object.
+	 *
+	 * @param timer2bound
+	 * @param startTime
+	 */
 	public TimeBoundedTimer(Timer timer2bound, int startTime) {
 		this.timer2bound = timer2bound;
 		this.startTime = startTime;
 		this.stopTime = Integer.MAX_VALUE;
 		this.init();
 	}
-	
+
+	/**
+	 * Initialize the object
+	 */
 	private void init() {
 		this.next = this.timer2bound.next();
 		while (this.next < this.startTime) {
@@ -36,11 +52,21 @@ public class TimeBoundedTimer implements Timer {
 		}
 	}
 
+	/**
+	 * return if there is a next time
+	 *
+	 * @return a boolean
+	 */
 	@Override
 	public boolean hasNext() {
 		return this.hasNext;
 	}
 
+	/**
+	 * Give the next time
+	 *
+	 * @return next time
+	 */
 	@Override
 	public Integer next() {
 		Integer next = this.next;
