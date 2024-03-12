@@ -8,37 +8,47 @@ import java.util.Iterator;
  */
 public interface DiscreteActionInterface extends Comparable<DiscreteActionInterface>, Iterator<DiscreteActionInterface>{
 
-	/*
-	 * decrease the time of discrete action 
+	/**
+	 * Decreases the time of the discrete action.
+	 *
+	 * @param t the time to decrease
 	 */
 	public	void spendTime(int t);
-	
-	/*
-	 * return the method to execute
+
+	/**
+	 * Retrieves the method to execute.
+	 *
+	 * @return the method to execute
 	 */
 	public Method getMethod();
-	
-	/*
-	 * return the last laps time without update
+
+	/**
+	 * Retrieves the current laps time without updating.
+	 *
+	 * @return the current laps time
 	 */
 	public Integer getCurrentLapsTime();
-	
-	/*
-	 * get the object on which the method must be invoked
+
+	/**
+	 * Retrieves the object on which the method must be invoked.
+	 *
+	 * @return the object on which the method must be invoked
 	 */
 	public Object getObject();
 
 	// COMPARAISON
-	/*
-	 * compare discrete action according to the time before execution
-	 * 
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	/**
+	 * Compares this discrete action with the specified discrete action for order.
+	 *
+	 * @param c the discrete action to be compared
+	 * @return a negative integer, zero, or a positive integer as this action is less than, equal to, or greater than the specified action
 	 */
 	public int compareTo(DiscreteActionInterface c);
-	
-	/*
-	 * (non-Javadoc)
-	 * @see java.util.Iterator#next()
+
+	/**
+	 * Returns the next discrete action.
+	 *
+	 * @return the next discrete action
 	 */
 	public DiscreteActionInterface next();
 	
