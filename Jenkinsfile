@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def maven = tool 'Maven'
-                    sh "${maven}/bin/mvn test"
+                    sh "${maven}/bin/mvn test -f pom.xml"
                 }
             }
 //             post {
