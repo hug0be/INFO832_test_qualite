@@ -1,0 +1,40 @@
+
+w
+java:S1192Æ"TDefine a constant instead of duplicating this literal "[DAS] reset action " 4 times.(Ì­Ú›øÿÿÿÿ8­èìÿå1
+k
+java:S1192•"HDefine a constant instead of duplicating this literal " after " 4 times.(Âî¬¾úÿÿÿÿ8­èìÿå1
+p
+java:S1192•"MDefine a constant instead of duplicating this literal " time units
+" 8 times.(Âî¬¾úÿÿÿÿ8­èìÿå1
+u
+java:S1192•"RDefine a constant instead of duplicating this literal "[DAS] run action " 4 times.(Âî¬¾úÿÿÿÿ8­èìÿå1
+
+java:S2629˜"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¹ÚÀßúÿÿÿÿ8®èìÿå1
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êİ—™ÿÿÿÿÿJ$8aca0dee-d8ae-42ac-bcce-ffe61fafc0b1
+‚
+java:S1149*"eReplace the synchronized class "Vector" by an unsynchronized one such as "ArrayList" or "LinkedList".(†¾Œš8·èìÿå1
+‚
+java:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Ìí¡³ùÿÿÿÿ8·èìÿå1
+]	java:S125;"<This block of commented-out lines of code should be removed.(¼ô¾“øÿÿÿÿ8ºèìÿå1
+]	java:S125@"<This block of commented-out lines of code should be removed.(§‚³ûÿÿÿÿ8»èìÿå1
+]	java:S125o"<This block of commented-out lines of code should be removed.(’»“‰ıÿÿÿÿ8¿èìÿå1
+P
+java:S1135†"2Complete the task associated to this TODO comment.(È¥ŒÕ8Àèìÿå1
+G	java:S106–"+Replace this use of System.out by a logger.(Ò¡Àe8Ãèìÿå1
+n
+java:S3457˜"KFormat specifiers or lambda should be used instead of string concatenation.(¹ÚÀßúÿÿÿÿ8Åèìÿå1
+M	java:S106™"+Replace this use of System.out by a logger.(£²û’ÿÿÿÿÿ8Çèìÿå1
+^	java:S125­"<This block of commented-out lines of code should be removed.(Èü´øÿÿÿÿ8Êèìÿå1
+Y	java:S125³"<This block of commented-out lines of code should be removed.(ˆ¥«8Ëèìÿå1
+M	java:S106Ç"+Replace this use of System.out by a logger.(ÑÍğüúÿÿÿÿ8Ìèìÿå1
+H	java:S106Ê"+Replace this use of System.out by a logger.(­†“8Îèìÿå1
+H	java:S106×"+Replace this use of System.out by a logger.(Ú¯ÿš8Ğèìÿå1
+H	java:S106Ü"+Replace this use of System.out by a logger.(¿è®Î8Ñèìÿå1
+|
+java:S2142å"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ı¾8Òèìÿå1
+P
+java:S1135è"2Complete the task associated to this TODO comment.(»Çì8Óèìÿå1
+M	java:S106ê"+Replace this use of System.out by a logger.(áš¤×ûÿÿÿÿ8Óèìÿå1
+H	java:S106õ"+Replace this use of System.out by a logger.(ºÚ«¶8Ôèìÿå1
+G	java:S106÷"+Replace this use of System.out by a logger.(ÖíÁ8Ôèìÿå1
+M	java:S106‡"+Replace this use of System.out by a logger.(—œÙµıÿÿÿÿ8Õèìÿå1

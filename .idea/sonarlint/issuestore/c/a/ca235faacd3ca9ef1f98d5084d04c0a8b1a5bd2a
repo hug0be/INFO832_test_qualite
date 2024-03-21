@@ -1,0 +1,21 @@
+
+g	java:S112U"FDefine and throw a dedicated exception instead of using a generic one.(Êå¨éûÿÿÿÿ8¯çìÿå1
+g	java:S112G"FDefine and throw a dedicated exception instead of using a generic one.(íĞÿÿÿÿÿ8°çìÿå1
+g	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(Êå¨éûÿÿÿÿ8°çìÿå1
+b	java:S112a"FDefine and throw a dedicated exception instead of using a generic one.(›ïºà8°çìÿå1
+n	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼Ø…8²çìÿå1
+d
+java:S2184d"BCast one of the operands of this addition operation to a "double".(ƒ¯£úÿÿÿÿ8´çìÿå1
+b
+java:S2184d"@Cast one of the operands of this integer division to a "double".(ƒ¯£úÿÿÿÿ8´çìÿå1
+t
+java:S2786"RRemove this redundant "static" qualifier; nested enum types are implicitly static.(ÕãäÉıÿÿÿÿ8Äçìÿå1
+X	java:S125""<This block of commented-out lines of code should be removed.(çä’8Åçìÿå1
+X	java:S125*"<This block of commented-out lines of code should be removed.(›„Í§8Ççìÿå1
+S
+java:S32523"6Use static access with "java.lang.Enum" for "valueOf".(ßÙ¸8Éçìÿå1
+X	java:S125Å"<This block of commented-out lines of code should be removed.(Òˆc8Òçìÿå1
+6
+java:S2140Ï"Use "nextInt()" instead.(–ïô¢8Óçìÿå1
+;
+java:S2140Ø"Use "nextInt()" instead.(øŒ›Òÿÿÿÿÿ8Ôçìÿå1
