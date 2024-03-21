@@ -61,7 +61,7 @@ package timer;
 	 *
 	 * @param period next periodic time
 	 * @param at periodic time
-	 * @param moreOrLess random number tu subtract or add
+	 * @param moreOrLess random number to subtract or add
 	 */
 	@Deprecated
 	public PeriodicTimer(int period, int at, RandomTimer moreOrLess) {
