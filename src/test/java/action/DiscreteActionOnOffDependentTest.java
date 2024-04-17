@@ -24,19 +24,19 @@ class DiscreteActionOnOffDependentTest {
     @BeforeEach
     void setUp() {
         action = new DiscreteActionOnOffDependent(
-                dummyObject, "A", new PeriodicTimer(30),  "B", new PeriodicTimer(10)
+            dummyObject, "A", new PeriodicTimer(30),  "B", new PeriodicTimer(10)
         );
         almostDoneAction = new DiscreteActionOnOffDependent(
-                dummyObject, "A", new OneShotTimer(30), "B", new OneShotTimer(10)
+            dummyObject, "A", new OneShotTimer(30), "B", new OneShotTimer(10)
         );
         treeSetAction = new DiscreteActionOnOffDependent(
-                dummyObject, "A", new TreeSet<>(Arrays.asList(30, 40)), "B", new TreeSet<>(Arrays.asList(10, 35))
+            dummyObject, "A", new TreeSet<>(Arrays.asList(30, 40)), "B", new TreeSet<>(Arrays.asList(10, 35))
         );
         onFirstAction = new DiscreteActionOnOffDependent(
-                dummyObject, "A", new OneShotTimer(10),  "B", new OneShotTimer(20)
+            dummyObject, "A", new OneShotTimer(10),  "B", new OneShotTimer(30)
         );
         onFirstTreeSetAction = new DiscreteActionOnOffDependent(
-                dummyObject, "A", new TreeSet<>(List.of(10)),  "B", new TreeSet<>(List.of(20))
+            dummyObject, "A", new TreeSet<>(List.of(10)),  "B", new TreeSet<>(List.of(30))
         );
     }
 
