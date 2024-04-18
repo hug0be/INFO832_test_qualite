@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import timer.OneShotTimer;
 import timer.PeriodicTimer;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -69,21 +68,21 @@ class DiscreteActionDependentTest {
         assertEquals(4, actionWithDependences.depedentActions.size());
 
         // Check invalid arguments : method that does not exist
-        assertThrows(NoSuchMethodException.class, () -> { actionWithDependences.addDependence(dependentObject3, "thisMethodDoesntExist", new OneShotTimer(10)); });
+        assertThrows(NoSuchMethodException.class, () -> actionWithDependences.addDependence(dependentObject3, "thisMethodDoesntExist", new OneShotTimer(10)));
         // Check invalid arguments : empty method name
-        assertThrows(IllegalArgumentException.class, () -> { actionWithDependences.addDependence(dependentObject3, "", new OneShotTimer(10)); });
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject3, "", new OneShotTimer(10)));
         // Check invalid arguments : null method name
-        assertThrows(IllegalArgumentException.class, () -> { actionWithDependences.addDependence(dependentObject3, null, new OneShotTimer(10)); });
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject3, null, new OneShotTimer(10)));
         // Check invalid arguments : null object
-        assertThrows(IllegalArgumentException.class, () -> { actionWithDependences.addDependence(null, "A", new OneShotTimer(10)); });
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(null, "A", new OneShotTimer(10)));
         // Check invalid arguments : null timer
-        assertThrows(IllegalArgumentException.class, () -> { actionWithDependences.addDependence(dependentObject3, "A", null); });
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject3, "A", null));
     }
 
     @Test
     void nextMethod() {
         // Check actions with no dependent actions
-        assertThrows(NoSuchElementException.class, () -> { action.nextMethod(); });
+        assertThrows(NoSuchElementException.class, () -> action.nextMethod());
 
         // Check initial currentAction
         assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
@@ -101,7 +100,7 @@ class DiscreteActionDependentTest {
     @Test
     void spendTime() {
         // Check invalid arguments (negatives and max integers)
-//        assertThrows(InvalidParameterException.class, () -> { actionWithDependences.spendTime(-10); });
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.spendTime(-10));
         // TODO : Ajouter test pour max integer
 
         // Check if action is unchanged when timer is not expired
