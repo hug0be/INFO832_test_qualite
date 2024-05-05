@@ -38,9 +38,7 @@ class DiscreteActionDependentTest {
             dummyObject, "A", new PeriodicTimer(30)
         );
         actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10));
-        actionWithDependences.addDependence(dependentObject1, "B", new OneShotTimer(10));
-
-        actionAlmostDone.addDependence(dependentObject1, "B", new OneShotTimer(10));
+        actionWithDependences.addDependence(dependentObject2, "B", new OneShotTimer(10));
     }
 
     @Test
@@ -59,15 +57,15 @@ class DiscreteActionDependentTest {
         assertEquals(2, actionWithDependences.depedentActions.size());
 
         // Check valid dependence addition
-        actionWithDependences.addDependence(dependentObject2, "B", new PeriodicTimer(10));
+        actionWithDependences.addDependence(dependentObject2, "A", new PeriodicTimer(10));
         assertEquals(3, actionWithDependences.depedentActions.size());
 
         // Check same dependence addition
-        actionWithDependences.addDependence(dependentObject2, "B", new PeriodicTimer(10));
-        assertEquals(4, actionWithDependences.depedentActions.size());
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10)));
+        assertEquals(3, actionWithDependences.depedentActions.size());
 
         // Check invalid arguments : method that does not exist
-        assertThrows(NoSuchMethodException.class, () -> actionWithDependences.addDependence(dependentObject2, "thisMethodDoesntExist", new OneShotTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "thisMethodDoesntExist", new OneShotTimer(10)));
         // Check invalid arguments : empty method name
         assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "", new OneShotTimer(10)));
         // Check invalid arguments : null method name
@@ -83,24 +81,19 @@ class DiscreteActionDependentTest {
         // Check actions with no dependent actions
         assertThrows(NoSuchElementException.class, () -> action.nextMethod());
 
-        // Check initial currentAction
-        assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
-
         // Check if actions increment
         actionWithDependences.nextMethod();
         assertEquals(actionWithDependences.depedentActions.first(), actionWithDependences.currentAction);
-
-        // Check if actions loop back
-        actionWithDependences.nextMethod();
-        actionWithDependences.nextMethod();
-        assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
     }
 
     @Test
     void spendTime() {
         // Check invalid arguments (negatives and max integers)
+        action.spendTime(0);
+        assertEquals(30, action.getCurrentLapsTime());
+
+        // Check negative arguments
         assertThrows(IllegalArgumentException.class, () -> actionWithDependences.spendTime(-10));
-        // TODO : Ajouter test pour max integer
 
         // Check if action is unchanged when timer is not expired
         actionWithDependences.spendTime(10);
@@ -115,20 +108,26 @@ class DiscreteActionDependentTest {
         // Check if actions loop back when all dependent actions are expired
         actionWithDependences.spendTime(20);
         assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
+
+        // TODO : Ajouter test pour max integer
     }
 
     @Test
     void compareTo() {
         // action and actionDependences have the same time left
-        assertEquals(0, action.compareTo(actionWithDependences));
+        assertEquals(0, actionWithDependences.compareTo(action));
 
         // action has less time left than actionDependences it spends 10 units of time
         action.spendTime(10);
-        assertEquals(-1, action.compareTo(actionWithDependences));
+        assertEquals(1, actionWithDependences.compareTo(action));
 
         // .. but when actionDependences changes action, action has more time left
-        actionWithDependences.nextMethod();
-        assertEquals(1, action.compareTo(actionWithDependences));
+        actionWithDependences.next();
+        assertEquals(-1, actionWithDependences.compareTo(action));
+
+        // .. but when action is done, actionDependences has more time left
+        action.next();
+        assertEquals(1, actionWithDependences.compareTo(action));
     }
 
     @Test
@@ -145,19 +144,17 @@ class DiscreteActionDependentTest {
         assertEquals(10, actionWithDependences.getCurrentLapsTime());
 
         // Check if actions loop back
-        actionWithDependences.next();
+        actionWithDependences.next().next();
         assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
         assertEquals(30, actionWithDependences.getCurrentLapsTime());
 
         // Check exception when action is done
-        actionAlmostDone.next();
         assertThrows(NoSuchElementException.class, actionAlmostDone::next);
     }
 
     @Test
     void hasNext() {
-        assertTrue(actionAlmostDone.hasNext());
-        actionAlmostDone.next();
+        assertTrue(action.hasNext());
         assertFalse(actionAlmostDone.hasNext());
     }
 }
