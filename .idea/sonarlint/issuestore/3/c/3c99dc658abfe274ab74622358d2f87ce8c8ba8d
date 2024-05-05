@@ -1,9 +1,9 @@
 
-r	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠØ­çÿÿÿÿÿ8ßèìÿå1
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êİ—™ÿÿÿÿÿJ$a97beda3-a828-41c5-84a1-cd34d5ee5b09
-
-java:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(åûÒ¸ûÿÿÿÿ8îèìÿå1
-\
-java:S1161:":Add the "@Override" annotation above this method signature(´„áçúÿÿÿÿ8õèìÿå1
+˜	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŠØ­çÿÿÿÿÿ8ßèìÿå1J$1399e4ac-151e-4d7e-af63-7bf44b3d3fd8
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êİ—™ÿÿÿÿÿJ$67ece651-4208-4a64-a701-550f1b77a1bd
+§
+java:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(åûÒ¸ûÿÿÿÿ8îèìÿå1J$fdb3006b-0bb1-493d-a599-9102c30d166d
+‚
+java:S1161:":Add the "@Override" annotation above this method signature(´„áçúÿÿÿÿ8õèìÿå1J$928864ca-c6f7-47e7-b49c-e6f3e9f7d1e6
 v
-java:S1161F":Add the "@Override" annotation above this method signature(Îî©ÚJ$daf11b4b-3e77-44df-8d82-615c36eb183e
+java:S1161F":Add the "@Override" annotation above this method signature(Îî©ÚJ$e8f87dd5-2a76-459c-afcd-d6d38149a0fc

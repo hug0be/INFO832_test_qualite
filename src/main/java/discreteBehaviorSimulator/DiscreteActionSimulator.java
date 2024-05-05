@@ -39,7 +39,7 @@ public class DiscreteActionSimulator implements Runnable {
 	
 	private Clock globalTime;
 	
-	private Vector<DiscreteActionInterface> actionsList = new Vector<>();
+	Vector<DiscreteActionInterface> actionsList = new Vector<>();
 	
 	private int nbLoop;
 	private int step;
@@ -166,7 +166,7 @@ public class DiscreteActionSimulator implements Runnable {
 	*
 	* @param  runningTimeOf1stCapsul  time for the simulator to spend
 	*/
-	private void updateTimes(int runningTimeOf1stCapsul){
+	void updateTimes(int runningTimeOf1stCapsul){
 		
 		// update time laps off all actions
 		for(int i=1 ; i < this.actionsList.size(); i++){
