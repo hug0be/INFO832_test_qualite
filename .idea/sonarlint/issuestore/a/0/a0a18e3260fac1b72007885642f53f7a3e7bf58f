@@ -3,6 +3,8 @@
 java:S2629`"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(çìá’ýÿÿÿÿ8ãçìÿå1
 
 java:S2629¯"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(±­‰žþÿÿÿÿ8äçìÿå1
+Z
+java:S4973–"<Strings and Boxed types should be compared using "equals()".(»Þþø8ºðµ„æ1
 O
 java:S1135"2Complete the task associated to this TODO comment.(š¯ÿÁ8îçìÿå1
 ]	java:S125."<This block of commented-out lines of code should be removed.(¼ô¾“øÿÿÿÿ8ïçìÿå1
@@ -17,3 +19,13 @@ n
 java:S3457¯"KFormat specifiers or lambda should be used instead of string concatenation.(±­‰žþÿÿÿÿ8ùçìÿå1
 Y	java:S125°"<This block of commented-out lines of code should be removed.(ïÿûÄ8ûçìÿå1
 	java:S125½"<This block of commented-out lines of code should be removed.(âˆ‚³8äì¿á1J$53e55870-eedf-41a4-a8d1-7957f5a5f788
+J
+java:S1128".Remove this unused import 'java.util.TreeSet'.(½îB8‰òµ„æ1
+O
+java:S1128"-Remove this unused import 'java.util.Vector'.(ÿŒ¸Áÿÿÿÿÿ8Šòµ„æ1
+Y
+java:S1128"=Remove this unused import 'java.util.logging.ConsoleHandler'.(±ìÍ 8Šòµ„æ1
+W
+java:S1128":Remove this unused import 'java.util.logging.FileHandler'.(—­—å8‹òµ„æ1
+e
+java:S1128"CRemove this unused import 'discreteBehaviorSimulator.LogFormatter'.(›Þ™ùÿÿÿÿ8Œòµ„æ1

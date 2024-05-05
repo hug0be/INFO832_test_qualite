@@ -1,16 +1,16 @@
 
-^
-java:S6355"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(ıà˙ö
-K
-java:S1133"5Do not forget to remove this deprecated code someday.(…¿¸˘
->
-java:S1123"(Add the missing @deprecated Javadoc tag.(…¿¸˘
-^
-java:S6355'"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(ıà˙ö
-K
-java:S1133("5Do not forget to remove this deprecated code someday.(°≤πÏ
->
-java:S1123("(Add the missing @deprecated Javadoc tag.(°≤πÏ
-M
-java:S11176"7Rename "next" which hides the field declared at line 6.(—ﬂÛ‚
-P	java:S125B"<This block of commented-out lines of code should be removed.(“àùc
+e
+java:S6355)"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(ıà˙ö8áπ∞õ„1
+R
+java:S1133*"5Do not forget to remove this deprecated code someday.(…¿¸˘8áπ∞õ„1
+E
+java:S1123*"(Add the missing @deprecated Javadoc tag.(…¿¸˘8áπ∞õ„1
+e
+java:S6355B"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(ıà˙ö8âπ∞õ„1
+R
+java:S1133C"5Do not forget to remove this deprecated code someday.(°≤πÏ8âπ∞õ„1
+E
+java:S1123C"(Add the missing @deprecated Javadoc tag.(°≤πÏ8âπ∞õ„1
+U
+java:S1117Z"8Rename "next" which hides the field declared at line 22.(—ﬂÛ‚8ãπ∞õ„1
+W	java:S125f"<This block of commented-out lines of code should be removed.(“àùc8åπ∞õ„1

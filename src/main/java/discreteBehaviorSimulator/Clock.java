@@ -31,7 +31,7 @@ public class Clock {
 	/**
 	* Constructor for the Clock class, initializing time and nextJump at 0.
 	*/
-	private Clock() {
+	Clock() {
 		this.time = 0;
 		this.nextJump=0;
 		this.lock = new ReentrantReadWriteLock();

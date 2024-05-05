@@ -15,6 +15,8 @@ X
 java:S1854Ϊ":Remove this useless assignment to local variable "object".(ΐΙΏτ8ημÿε1
 ]
 java:S1854Ω":Remove this useless assignment to local variable "method".(‰…ύÿÿÿÿ8ημÿε1
+l
+java:S2272Χ"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(™«‚8†’„ζ1
 ^	java:S125Ψ"<This block of commented-out lines of code should be removed.(χ΄η°ÿÿÿÿÿ8›ημÿε1
 N
 java:S1481Ω"+Remove this unused "method" local variable.(‰…ύÿÿÿÿ8›ημÿε1

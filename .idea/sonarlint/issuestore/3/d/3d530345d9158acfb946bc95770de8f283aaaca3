@@ -1,8 +1,7 @@
 
-g	java:S112~"FDefine and throw a dedicated exception instead of using a generic one.(»’êìùÿÿÿÿ8…èìÿå1
-v
-java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨æÏç8…èìÿå1
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êİ—™ÿÿÿÿÿJ$2943c7d8-99b4-45b3-a1ae-541303c9e83d
-¶
-java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.(üî—ğ8èìÿå1
-]	java:S125e"<This block of commented-out lines of code should be removed.(“êøïûÿÿÿÿ8“èìÿå1
+	java:S112~"FDefine and throw a dedicated exception instead of using a generic one.(»’êìùÿÿÿÿ8…èìÿå1J$c213a38e-e460-48b5-8c0c-a20483ebde39
+ˆ	java:S112y"FDefine and throw a dedicated exception instead of using a generic one.(»ü®Ì8Ï™ªªó1J$2a3cdf27-3716-4a16-8bfa-f7380e69cf12
+œ
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨æÏç8…èìÿå1J$64d359e4-404c-4e96-bef8-5e862e4ce012
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Êİ—™ÿÿÿÿÿJ$112e2599-6517-42ee-a65c-548e9cc4241e
+ƒ	java:S125e"<This block of commented-out lines of code should be removed.(“êøïûÿÿÿÿ8“èìÿå1J$08504b2b-52de-4b28-9185-5ecf9db5b7ed
