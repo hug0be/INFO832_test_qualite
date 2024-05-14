@@ -1,5 +1,7 @@
-package discreteBehaviorSimulator;
+package discrete_behavior_simulator;
 
+
+import exceptions.UnexpectedTimeChangeException;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,10 +24,8 @@ public class Clock {
 	
 	private int time;
 	private int nextJump;
-	private ReentrantReadWriteLock lock;
+	private final ReentrantReadWriteLock lock;
 	private boolean virtual;
-	
-	
 	private Set<ClockObserver> observers;
 	
 	/**
@@ -109,7 +109,7 @@ public class Clock {
 		this.lockWriteAccess();
 
 		if(time != this.nextJump && time != 0) { // Allow increase by 0
-			throw new Exception("Unexpected time change");
+			throw new UnexpectedTimeChangeException("Unexpected time change");
 		}
 		this.time += time;
 		for(ClockObserver o : this.observers) {
