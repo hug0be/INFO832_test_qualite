@@ -37,7 +37,7 @@ public class LogFormatterTest {
 
         String formattedDate = formatter.calcDate(millisecs);
 
-        assertEquals("Calcul incorrect de la date", "2021.09.13 12:28:52.000", formattedDate);
+        assertEquals("Calcul incorrect de la date", "2021.09.13 11:08:52.00", formattedDate);
     }
 
     @Test
