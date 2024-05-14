@@ -1,4 +1,4 @@
-package discreteBehaviorSimulator;
+package discrete_behavior_simulator;
 
 /**
  * The ClockObserver interface represents an observer that can be notified about time changes in a Clock object.

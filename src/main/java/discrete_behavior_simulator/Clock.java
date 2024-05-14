@@ -1,5 +1,7 @@
-package discreteBehaviorSimulator;
+package discrete_behavior_simulator;
 
+
+import exceptions.UnexpectedTimeChangeException;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -22,10 +24,8 @@ public class Clock {
 	
 	private int time;
 	private int nextJump;
-	private ReentrantReadWriteLock lock;
+	private final ReentrantReadWriteLock lock;
 	private boolean virtual;
-	
-	
 	private Set<ClockObserver> observers;
 	
 	/**
@@ -36,7 +36,7 @@ public class Clock {
 		this.nextJump=0;
 		this.lock = new ReentrantReadWriteLock();
 		this.virtual = true;
-		this.observers = new HashSet<ClockObserver>();
+		this.observers = new HashSet<>();
 	}
 	
 	/**
@@ -98,19 +98,6 @@ public class Clock {
 			o.nextClockChange(this.nextJump);
 		}
 	}
-	/*public void setTime(int time) throws IllegalAccessException {
-		this.lock.lock();
-		if (this.time < time) {
-			this.time = time;
-			for(ClockObserver o:this.observers) {
-				o.ClockChange();
-			}
-		}else{
-			this.lock.unlock();
-			throw new IllegalAccessException("Set time error, cannot go back to the past !!!");
-		}
-		this.lock.unlock();
-	}*/
 	
 	/**
 	* Increases the time of the Clock to the next jump.
@@ -119,19 +106,18 @@ public class Clock {
 	* @throws Exception time change if the time parameter is different from the next jump
 	*/
 	public void increase(int time) throws Exception {
-
 		this.lockWriteAccess();
 
-		if(time != this.nextJump) {
-			throw new Exception("Unexpected time change");
+		if(time != this.nextJump && time != 0) { // Allow increase by 0
+			throw new UnexpectedTimeChangeException("Unexpected time change");
 		}
 		this.time += time;
-		for(ClockObserver o:this.observers) {
+		for(ClockObserver o : this.observers) {
 			o.clockChange(this.time);
 		}
 		this.unlockWriteAccess();
 	}
-	
+
 	/**
 	* Returns the current time of the Clock.
 	*

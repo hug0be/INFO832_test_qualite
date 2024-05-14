@@ -1,5 +1,5 @@
 
-package discreteBehaviorSimulator;
+package discrete_behavior_simulator;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -9,7 +9,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import action.DiscreteAction;
 import action.DiscreteActionInterface;
 
 

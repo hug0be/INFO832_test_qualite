@@ -1,16 +1,8 @@
-package discreteBehaviorSimulator;
+package discrete_behavior_simulator;
 
 import action.DiscreteAction;
-import action.DiscreteActionInterface;
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import timer.OneShotTimer;
-import timer.PeriodicTimer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
