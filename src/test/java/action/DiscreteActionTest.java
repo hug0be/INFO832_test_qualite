@@ -1,8 +1,8 @@
-import action.DiscreteAction;
+package action;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import timer.PeriodicTimer;
-import timer.Timer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,7 +34,7 @@ public class DiscreteActionTest {
 
     @Test
     void compareTo(){
-        ;
+        
     }
 
 }
