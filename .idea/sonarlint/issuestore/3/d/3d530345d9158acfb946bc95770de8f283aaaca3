@@ -1,7 +1,4 @@
 
-	java:S112~"FDefine and throw a dedicated exception instead of using a generic one.(»’κμωÿÿÿÿ8…θμÿε1J$c213a38e-e460-48b5-8c0c-a20483ebde39
-	java:S112y"FDefine and throw a dedicated exception instead of using a generic one.(»ό®Μ8Ο™ªªσ1J$2a3cdf27-3716-4a16-8bfa-f7380e69cf12
-
-java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨ζΟη8…θμÿε1J$64d359e4-404c-4e96-bef8-5e862e4ce012
-	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Κέ—™ÿÿÿÿÿJ$112e2599-6517-42ee-a65c-548e9cc4241e
-ƒ	java:S125e"<This block of commented-out lines of code should be removed.(“κψοϋÿÿÿÿ8“θμÿε1J$08504b2b-52de-4b28-9185-5ecf9db5b7ed
+	java:S112p"FDefine and throw a dedicated exception instead of using a generic one.(»’κμωÿÿÿÿ8Α¦Ώχ1J$b0ebd6f4-90b6-4ad8-a2c0-6041603457ac
+	java:S112l"FDefine and throw a dedicated exception instead of using a generic one.(»ό®Μ8‘Α¦Ώχ1J$a4cad1b5-9a85-4cfb-ba58-08e5079c9e96
+	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Κέ—™ÿÿÿÿÿJ$82a9dfad-c2bc-4a7d-8898-145029185474
