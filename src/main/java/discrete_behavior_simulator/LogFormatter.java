@@ -55,6 +55,7 @@ public class LogFormatter  extends Formatter {
 	  * @param h Handler object
 	  * @return an empty String
 	  */
+	  @Override
 	  public String getHead(Handler h) {
 		  return "";
 	  }
