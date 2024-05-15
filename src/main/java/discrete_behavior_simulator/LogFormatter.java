@@ -23,16 +23,11 @@ public class LogFormatter  extends Formatter {
 	* @return the contents of the log record in type String
 	*/
 	public String format(LogRecord rec) {
-		StringBuffer buf = new StringBuffer();
-		
-		buf.append(calcDate(rec.getMillis()));
-		buf.append(": ");
-		buf.append(rec.getLevel());
-		buf.append(System.getProperty("line.separator"));
-		buf.append(formatMessage(rec));
-		buf.append(System.getProperty("line.separator"));
-		
-		return buf.toString();
+		return calcDate(rec.getMillis()) +
+				": " + rec.getLevel() +
+				System.lineSeparator() +
+				formatMessage(rec) +
+				System.lineSeparator();
 	}
 
 	/**
