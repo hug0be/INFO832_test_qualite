@@ -47,8 +47,6 @@ public class LogFormatter  extends Formatter {
 		}
 	  }
 
-	  // this method is called just after the handler using this
-	  // formatter is created
 	  /**
 	  * This method is called just after the handler using this. formatter is created
 	  * 
@@ -59,9 +57,7 @@ public class LogFormatter  extends Formatter {
 	  public String getHead(Handler h) {
 		  return "";
 	  }
-	  
-	// this method is called just after the handler using this
-	  // formatter is closed
+
 	  /**
 	  * This method is called jus after the handler using this. formatter is closed
 	  * 
