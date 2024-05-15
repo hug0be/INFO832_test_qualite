@@ -33,14 +33,14 @@ public class LogFormatter  extends Formatter {
 	/**
 	* Calculates and formats the date.
 	*
-	* @param millisecs in type long
+	* @param millisec in type long
 	* @return the corresponding date in type String
 	*/
-	String calcDate(long millisecs) {
-		if (millisecs > 0) {
-			SimpleDateFormat date_format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SS");
-			Date resultdate = new Date(millisecs);
-			return date_format.format(resultdate);
+	String calcDate(long millisec) {
+		if (millisec > 0) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SS");
+			Date resultdate = new Date(millisec);
+			return dateFormat.format(resultdate);
 		}
 		else{
 			return null;
