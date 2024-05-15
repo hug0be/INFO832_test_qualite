@@ -62,7 +62,7 @@ class TimeBoundedTimerTest {
     @Test
     void nextWithoutFollowingTime(){
         OneShotTimer oneshot = new OneShotTimer(3);
-        TimeBoundedTimer timer = new TimeBoundedTimer(period, 7);
+        TimeBoundedTimer timer = new TimeBoundedTimer(oneshot, 7);
         assertNull(timer.next());
     }
 }
