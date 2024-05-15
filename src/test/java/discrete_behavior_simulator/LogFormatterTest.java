@@ -17,7 +17,7 @@ public class LogFormatterTest {
 
         String formattedString = formatter.format(record);
 
-        assertEquals("Formatage incorrect du LogRecord", "2021.09.13 11:08:52.00: INFO" + System.getProperty("line.separator") + "Test message" + System.getProperty("line.separator"), formattedString);
+        assertEquals("Formatage incorrect du LogRecord", "2021.09.13 11:08:52.00: INFO" + System.lineSeparator() + "Test message" + System.lineSeparator(), formattedString);
     }
 
     // verify if it is a real obligation since we cannot modify LogRecord, and it generates a date at its creation
