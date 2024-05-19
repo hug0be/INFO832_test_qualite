@@ -15,8 +15,8 @@ public class DiscreteActionSimulatorTest {
         simulator = new DiscreteActionSimulator();
     }
 
-    @Test
-    public void testConstructor() {
+//    @Test
+//    public void testConstructor() {
         //no getter in class
 //        // Test logger configuration
 //        assertNotNull("Logger should not be null", simulator.logger);
@@ -25,7 +25,7 @@ public class DiscreteActionSimulatorTest {
 //
 //        // Test if globalTime instance is properly defined
 //        assertNotNull("Global time instance should not be null", simulator.globalTime);
-    }
+//    }
 
     @Test
     public void testAddActionSingleInstance() {

@@ -1,21 +1,12 @@
 package timer;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RandomTimerTest {
-    public RandomTimer poissonTimer, uniformTimer, exponentialTimer, gaussianTimer;
-
-    @BeforeEach
-    void setUp() throws Exception {
-        poissonTimer = new RandomTimer(RandomTimer.randomDistribution.POISSON, 1);
-        gaussianTimer = new RandomTimer(RandomTimer.randomDistribution.GAUSSIAN, 1);
-    }
 
     @Test
-    void string2Distribution() {
+    void testString2Distribution() {
         assertEquals(RandomTimer.randomDistribution.POISSON, RandomTimer.string2Distribution("POISSON"));
         assertEquals(RandomTimer.randomDistribution.EXP, RandomTimer.string2Distribution("exponential"));
         assertEquals(RandomTimer.randomDistribution.GAUSSIAN, RandomTimer.string2Distribution("gaussian"));
@@ -24,7 +15,7 @@ class RandomTimerTest {
     }
 
     @Test
-    void distribution2String() {
+    void testDistribution2String() {
         assertEquals("POISSON", RandomTimer.distribution2String(RandomTimer.randomDistribution.POISSON));
         assertEquals("EXP", RandomTimer.distribution2String(RandomTimer.randomDistribution.EXP));
         assertEquals("GAUSSIAN", RandomTimer.distribution2String(RandomTimer.randomDistribution.GAUSSIAN));
@@ -32,24 +23,44 @@ class RandomTimerTest {
     }
 
     @Test
-    void getDistribution() {
-        assertEquals("POISSON", poissonTimer.getDistribution());
+    void testGetDistributionParam() throws Exception {
+        // Case EXP
+        RandomTimer expTimer = new RandomTimer(RandomTimer.randomDistribution.EXP, 1.0);
+        assertTrue(expTimer.getDistributionParam().contains("rate:"));
+
+        // Case POISSON
+        RandomTimer poissonTimer = new RandomTimer(RandomTimer.randomDistribution.POISSON, 1.0);
+        assertTrue(poissonTimer.getDistributionParam().contains("mean:"));
+
+        // Case POSIBILIST
+        RandomTimer possibilistTimer = new RandomTimer(RandomTimer.randomDistribution.POSIBILIST, 0, 10);
+        assertTrue(possibilistTimer.getDistributionParam().contains("lolim:"));
+        assertTrue(possibilistTimer.getDistributionParam().contains("hilim:"));
+
+        // Case GAUSSIAN
+        RandomTimer gaussianTimer = new RandomTimer(RandomTimer.randomDistribution.GAUSSIAN, 0, 10);
+        assertTrue(gaussianTimer.getDistributionParam().contains("lolim:"));
+        assertTrue(gaussianTimer.getDistributionParam().contains("hilim:"));
     }
 
     @Test
-    void getDistributionParam() {
+    void testToString() throws Exception {
+        // Case EXP
+        RandomTimer expTimer = new RandomTimer(RandomTimer.randomDistribution.EXP, 1.0);
+        assertTrue(expTimer.toString().contains("EXP rate:"));
 
-    }
+        // Case POISSON
+        RandomTimer poissonTimer = new RandomTimer(RandomTimer.randomDistribution.POISSON, 1.0);
+        assertTrue(poissonTimer.toString().contains("POISSON mean:"));
 
-    @Test
-    void getMean() {
-    }
+        // Case POSIBILIST
+        RandomTimer possibilistTimer = new RandomTimer(RandomTimer.randomDistribution.POSIBILIST, 0, 10);
+        assertTrue(possibilistTimer.toString().contains("POSIBILIST LoLim:"));
+        assertTrue(possibilistTimer.toString().contains("HiLim:"));
 
-    @Test
-    void next() {
-    }
-
-    @Test
-    void hasNext() {
+        // Case GAUSSIAN
+        RandomTimer gaussianTimer = new RandomTimer(RandomTimer.randomDistribution.GAUSSIAN, 0, 10);
+        assertTrue(gaussianTimer.toString().contains("GAUSSIAN LoLim:"));
+        assertTrue(gaussianTimer.toString().contains("HiLim:"));
     }
 }

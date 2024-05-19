@@ -23,55 +23,48 @@ public class LogFormatter  extends Formatter {
 	* @return the contents of the log record in type String
 	*/
 	public String format(LogRecord rec) {
-		StringBuffer buf = new StringBuffer();
-		
-		buf.append(calcDate(rec.getMillis()));
-		buf.append(": ");
-		buf.append(rec.getLevel());
-		buf.append(System.getProperty("line.separator"));
-		buf.append(formatMessage(rec));
-		buf.append(System.getProperty("line.separator"));
-		
-		return buf.toString();
+		return calcDate(rec.getMillis()) +
+				": " + rec.getLevel() +
+				System.lineSeparator() +
+				formatMessage(rec) +
+				System.lineSeparator();
 	}
 
 	/**
 	* Calculates and formats the date.
 	*
-	* @param millisecs in type long
+	* @param millisec in type long
 	* @return the corresponding date in type String
 	*/
-	String calcDate(long millisecs) {
-		if (millisecs > 0) {
-			SimpleDateFormat date_format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SS");
-			Date resultdate = new Date(millisecs);
-			return date_format.format(resultdate);
+	String calcDate(long millisec) {
+		if (millisec > 0) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SS");
+			Date resultdate = new Date(millisec);
+			return dateFormat.format(resultdate);
 		}
 		else{
 			return null;
 		}
 	  }
 
-	  // this method is called just after the handler using this
-	  // formatter is created
 	  /**
 	  * This method is called just after the handler using this. formatter is created
 	  * 
 	  * @param h Handler object
 	  * @return an empty String
 	  */
+	  @Override
 	  public String getHead(Handler h) {
 		  return "";
 	  }
-	  
-	// this method is called just after the handler using this
-	  // formatter is closed
+
 	  /**
 	  * This method is called jus after the handler using this. formatter is closed
 	  * 
 	  * @param h Handler object
 	  * @return an empty String
 	  */
+	  @Override
 	  public String getTail(Handler h) {
 	    return "";
 	  }
