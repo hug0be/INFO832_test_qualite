@@ -39,13 +39,7 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	private Integer currentLapsTime;
 	private Integer lastOffDelay=0;
 
-	/*public DiscreteActionOnOffDependent(Wo o, Method on, Timer timerOn, Method off, Timer timerOff){
-		this.onAction = new DiscreteAction(o, on, timerOn);
-		this.offAction = new DiscreteAction(o, off, timerOff);
-		
-		this.currentAction = this.onAction;
-	}*/
-
+	
 	/**
 	 * Constructs an On-Off dependent action sequence based on the specified object, On method dates, Off method dates.
 	 *
@@ -58,7 +52,6 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	public DiscreteActionOnOffDependent(Object o, String on, Timer timerOn, String off, Timer timerOff){
 		this.onAction = new DiscreteAction(o, on, timerOn);
 		this.offAction = new DiscreteAction(o, off, timerOff);
-		
 		this.currentAction = this.offAction;
 		this.currentLapsTime = 0;
 	}
@@ -118,15 +111,8 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	 * @see DateTimer
 	 */
 	public DiscreteActionOnOffDependent(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
-		/*Vector<Integer> timeLapseOn = new Vector<Integer>();
-		Vector<Integer> timeLapseOff = new Vector<Integer>();
-		
-		dates2Timalapse((TreeSet<Integer>)datesOn.clone(), (TreeSet<Integer>)datesOff.clone(), timeLapseOn, timeLapseOff);
-		*/
 		this.onAction = new DiscreteAction(o, on, new DateTimer(datesOn));
 		this.offAction = new DiscreteAction(o, off, new DateTimer(datesOff));
-		
-		
 		
 		if(datesOn.first() < datesOff.first()){
 			this.currentAction = this.onAction;
@@ -155,7 +141,7 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	 *
 	 * @param t the time to decrease
 	 */
-	public	void spendTime(int t) {
+	public void spendTime(int t) {
 		this.currentAction.spendTime(t);
 	}
 

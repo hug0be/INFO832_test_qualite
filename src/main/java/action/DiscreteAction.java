@@ -18,17 +18,11 @@ import timer.Timer;
  * @see DiscreteActionInterface
  */
 
-// TODO must inherit from Action
 public class DiscreteAction implements DiscreteActionInterface {
 	private Object object;
 	private Method method;
-	
-	
-	private Timer timmer;				// timer provides new lapsTime
-	//private TreeSet<Integer> dates;	// obsolete, managed in timer 
-	//private Vector<Integer> lapsTimes;// obsolete, managed in timer
+	private Timer timer;				// timer provides new lapsTime
 	private Integer lapsTime; 			// waiting time (null if never used)
-	
 	private Logger logger;
 
 	// Constructor
@@ -37,23 +31,9 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 */
 	public DiscreteAction() {
 		// Start logger
-			this.logger = Logger.getLogger("DAS");
-			//this.logger = Logger.getLogger("APP");
-			this.logger.setLevel(Level.ALL);
-			this.logger.setUseParentHandlers(true);
-			
-			/*FileHandler logFile; 
-			ConsoleHandler logConsole; 
-			try{
-				this.logFile = new FileHandler(this.getClass().getName() + ".log");
-				//this.logFile.setFormatter(new SimpleFormatter());
-				this.logFile.setFormatter(new LogFormatter());
-				this.logConsole = new ConsoleHandler();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			this.logger.addHandler(logFile);
-			this.logger.addHandler(logConsole);*/
+		this.logger = Logger.getLogger("DAS");
+		this.logger.setLevel(Level.ALL);
+		this.logger.setUseParentHandlers(true);
 	}
 
 	/**
@@ -61,9 +41,9 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 *
 	 * @param o the object on which the method will be invoked
 	 * @param m the name of the method to be invoked
-	 * @param timmer the timer object providing the laps time
+	 * @param timer the timer object providing the laps time
 	 */
-	public DiscreteAction(Object o, String m, Timer timmer){
+	public DiscreteAction(Object o, String m, Timer timer){
 		this();
 		this.object = o;
 		try{	
@@ -72,8 +52,7 @@ public class DiscreteAction implements DiscreteActionInterface {
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		this.timmer = timmer;
-		//this.updateTimeLaps();
+		this.timer = timer;
 	}
 	
 	// ATTRIBUTION
@@ -89,7 +68,6 @@ public class DiscreteAction implements DiscreteActionInterface {
 			this.lapsTime -= t;
 		}
 		this.logger.log(Level.FINE, "[DA] operate spendTime on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime());
-		//System.out.println(         "[DA] operate spendTime on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime() + "\n");
 	}
 
 	// RECUPERATION
@@ -133,19 +111,18 @@ public class DiscreteAction implements DiscreteActionInterface {
 		if (this.lapsTime == null) { // no lapstime is equivalent to infinity 
 			return 1;
 		}
-		if (c.getCurrentLapsTime() == null) {// no lapstime is equivalent to infinity 
+		else if (c.getCurrentLapsTime() == null) {// no lapstime is equivalent to infinity 
 			return -1;
 		}
-    	if(this.lapsTime > c.getCurrentLapsTime()){
+		else if(this.lapsTime > c.getCurrentLapsTime()){
     		return 1;
     	}
-    	if(this.lapsTime < c.getCurrentLapsTime()){
+		else if(this.lapsTime < c.getCurrentLapsTime()){
     		return -1;
     	}
-		if(this.lapsTime == c.getCurrentLapsTime()){
+		else {
 			return 0;
 		}
-		return 0;
 	}
 
 	/**
@@ -154,8 +131,7 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 * @return a string representation of this action
 	 */
 	public String toString(){
-		return "Object : " + this.object.getClass().getName() + "\n Method : " + this.method.getName()+"\n Stat. : "+ this.timmer + "\n delay: " + this.lapsTime;
-
+		return "Object : " + this.object.getClass().getName() + "\n Method : " + this.method.getName()+"\n Stat. : "+ this.timer + "\n delay: " + this.lapsTime;
 	}
 
 
@@ -166,9 +142,8 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 */
 	public DiscreteActionInterface next() {
 		Integer old = this.lapsTime;
-		this.lapsTime = this.timmer.next();
+		this.lapsTime = this.timer.next();
 		this.logger.log(Level.FINE, "[DA] operate next on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime());
-		//System.out.println("[DA] operate 'next' on " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime() + "\n");
 		return this;
 	}
 
@@ -179,13 +154,9 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 */
 	public boolean hasNext() {
 		Boolean more=false;
-		if (this.timmer != null && this.timmer.hasNext()) {
+		if (this.timer != null && this.timer.hasNext()) {
 			more = true;
-		}/*else if (this.dates != null) {
-			more = !this.dates.isEmpty();
-		}else if (this.lapsTimes != null) {
-			more = !this.lapsTimes.isEmpty();
-		}*/
+		}
 		return more;		
 	}
 	

@@ -15,7 +15,6 @@ import timer.Timer;
  * @author flver
  * @see DiscreteActionInterface
  */
-//TODO Must be refactored to be generic
 public class DiscreteActionDependent implements DiscreteActionInterface {
 
 	/**
@@ -65,63 +64,13 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 		this.depedentActions.add(new DiscreteAction(o, depentMethodName, timerDependence));
 	}
 	
-	/*private void dates2Timalapse(TreeSet<Integer> datesOn, TreeSet<Integer> datesOff, Vector<Integer> timeLapseOn, Vector<Integer> timeLapseOff) {
-		Vector<Integer> currentTimeLapse;
-		TreeSet<Integer> currentDates;
-		Integer date=0;
-		if(datesOn.first()<datesOff.first()) {
-			currentTimeLapse = timeLapseOn;
-			currentDates = datesOn;
-		}else {
-			currentTimeLapse = timeLapseOff;	
-			currentDates = datesOff;		
-		}
-		Integer nextDate;
-		
-		while(datesOn.size()>0 || datesOff.size()>0) {
-			nextDate = currentDates.first();
-		
-			currentTimeLapse.add(nextDate - date);
-			currentDates.remove(nextDate);
-		
-			date = nextDate;
-			
-			if(currentDates == datesOn) {
-				currentDates = datesOff;
-				currentTimeLapse = timeLapseOff;
-			}else {
-				currentDates = datesOn;
-				currentTimeLapse = timeLapseOn;			
-			}
-		}
-		
-	}
-	@SuppressWarnings("unchecked")
-	public DiscreteActionDependent(Wo o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
-		Vector<Integer> timeLapseOn = new Vector<Integer>();
-		Vector<Integer> timeLapseOff = new Vector<Integer>();
-		
-		dates2Timalapse((TreeSet<Integer>)datesOn.clone(), (TreeSet<Integer>)datesOff.clone(), timeLapseOn, timeLapseOff);
-		
-		this.baseAction = new DiscreteAction(o, on, timeLapseOn);
-		this.offAction = new DiscreteAction(o, off, timeLapseOff);
-		
-		if(datesOn.first() < datesOff.first()){
-			this.currentAction = this.baseAction;
-		}else{
-			this.currentAction = this.offAction;
-		}
-	}
-*/
 
 	/**
 	 * Reinitializes the dependent actions.
 	 */
 	private void reInit() {
-		//this.baseAction.updateTimeLaps();
 		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
 		    DiscreteAction element = iter.next();
-		    //element.updateTimeLaps();
 		}		
 	}
 
@@ -156,8 +105,6 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * Updates the laps time.
 	 */
 	public void updateTimeLaps() {
-		// time laps is updated at the re-initialization
-		//this.currentAction.updateTimeLaps();	
 		this.nextMethod();	
 	}
 
@@ -213,7 +160,6 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * @return the next action
 	 */
 	public DiscreteActionInterface next() {
-		//Integer lapsTime = this.getNextLapsTime();
 		Method method = this.getMethod();
 		Object object = this.getObject();
 		return this;
