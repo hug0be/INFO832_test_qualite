@@ -25,17 +25,6 @@ public class DiscreteAction implements DiscreteActionInterface {
 	private Integer lapsTime; 			// waiting time (null if never used)
 	private Logger logger;
 
-	// Constructor
-	/**
-	 * Constructs a new DiscreteAction object.
-	 */
-	public DiscreteAction() {
-		// Start logger
-		this.logger = Logger.getLogger("DAS");
-		this.logger.setLevel(Level.ALL);
-		this.logger.setUseParentHandlers(true);
-	}
-
 	/**
 	 * Constructs a new DiscreteAction object with the specified object, method name, and timer.
 	 *
@@ -44,13 +33,16 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 * @param timer the timer object providing the laps time
 	 */
 	public DiscreteAction(Object o, String m, Timer timer){
-		this();
+		// Start logger
+		this.logger = Logger.getLogger("DAS");
+		this.logger.setLevel(Level.ALL);
+		this.logger.setUseParentHandlers(true);
+
 		this.object = o;
-		try{	
-			this.method = o.getClass().getDeclaredMethod(m, new Class<?>[0]);
-		}
-		catch(Exception e){
-			e.printStackTrace();
+		try {
+			this.method = o.getClass().getDeclaredMethod(m);
+		} catch(Exception e){
+			throw new IllegalArgumentException("Method " + m + " not found in class " + o.getClass().getName());
 		}
 		this.timer = timer;
 	}
