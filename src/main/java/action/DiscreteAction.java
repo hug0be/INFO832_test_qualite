@@ -104,25 +104,17 @@ public class DiscreteAction implements DiscreteActionInterface {
 	/**
 	 * Compares this discrete action with the specified discrete action for order.
 	 *
-	 * @param c the discrete action to be compared
+	 * @param other the discrete action to be compared
 	 * @return a negative integer, zero, or a positive integer as this action is less than, equal to, or greater than the specified action
 	 */
-	public int compareTo(DiscreteActionInterface c) {
-		if (this.lapsTime == null) { // no lapstime is equivalent to infinity 
-			return 1;
-		}
-		else if (c.getCurrentLapsTime() == null) {// no lapstime is equivalent to infinity 
-			return -1;
-		}
-		else if(this.lapsTime > c.getCurrentLapsTime()){
-    		return 1;
-    	}
-		else if(this.lapsTime < c.getCurrentLapsTime()){
-    		return -1;
-    	}
-		else {
-			return 0;
-		}
+	public int compareTo(DiscreteActionInterface other) {
+		Integer thisLapsTime = this.getCurrentLapsTime();
+		Integer otherLapsTime = other.getCurrentLapsTime();
+
+		if (thisLapsTime == null && otherLapsTime == null) return 0;
+		else if (thisLapsTime == null) return 1;
+		else if (otherLapsTime == null) return -1;
+		return thisLapsTime.compareTo(otherLapsTime);
 	}
 
 	/**
