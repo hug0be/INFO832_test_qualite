@@ -33,6 +33,10 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 * @param timer the timer object providing the laps time
 	 */
 	public DiscreteAction(Object o, String m, Timer timer){
+		if (o == null) throw new IllegalArgumentException("Object cannot be null");
+		if (m == null || m.isEmpty()) throw new IllegalArgumentException("Method name cannot be null or empty");
+		if (timer == null) throw new IllegalArgumentException("Timer cannot be null");
+
 		// Start logger
 		this.logger = Logger.getLogger("DAS");
 		this.logger.setLevel(Level.ALL);
@@ -58,8 +62,8 @@ public class DiscreteAction implements DiscreteActionInterface {
 	public void spendTime(int t) {
 		if(t < 0) throw new IllegalArgumentException("Time to spend must be positive");
 		Integer old = this.lapsTime;
-		while (t > 0) {
-			if (this.lapsTime == 0 && !this.timer.hasNext()) break;
+		while (t > 0 && this.lapsTime != null) {
+			if (this.lapsTime <= 0 && !this.timer.hasNext()) break;
 			t--;
 			if (--this.lapsTime > 0) continue;
 			this.lapsTime = this.timer.next();
