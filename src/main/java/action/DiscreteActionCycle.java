@@ -15,17 +15,17 @@ import timer.Timer;
  * @author flver
  * @see DiscreteActionInterface
  */
-public class DiscreteActionDependent implements DiscreteActionInterface {
+public class DiscreteActionCycle implements DiscreteActionInterface {
 
 	/**
 	 * The base action associated with this composite action.
 	 */
-	protected DiscreteAction baseAction;
+	protected DiscreteAction firstAction;
 
 	/**
 	 * The set of dependent actions that need to be executed along with the base action.
 	 */
-	protected TreeSet<DiscreteAction> depedentActions;
+	protected TreeSet<DiscreteAction> otherActions;
 
 	/**
 	 * An iterator over the dependent actions set.
@@ -46,11 +46,11 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * @param baseMethodName the name of the base method to be invoked
 	 * @param timerBase the timer object providing the base laps time
 	 */
-	public DiscreteActionDependent(Object o, String baseMethodName, Timer timerBase){
-		this.baseAction = new DiscreteAction(o, baseMethodName, timerBase);
-		this.depedentActions = new TreeSet<DiscreteAction>();
-		this.it = this.depedentActions.iterator();
-		this.currentAction = this.baseAction;
+	public DiscreteActionCycle(Object o, String baseMethodName, Timer timerBase){
+		this.firstAction = new DiscreteAction(o, baseMethodName, timerBase);
+		this.otherActions = new TreeSet<>();
+		this.it = this.otherActions.iterator();
+		this.currentAction = this.firstAction;
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * @param timerDependence the timer object providing the dependent laps time
 	 */
 	public void addDependence(Object o, String depentMethodName, Timer timerDependence) {
-		this.depedentActions.add(new DiscreteAction(o, depentMethodName, timerDependence));
+		this.otherActions.add(new DiscreteAction(o, depentMethodName, timerDependence));
 	}
 	
 
@@ -69,7 +69,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * Reinitializes the dependent actions.
 	 */
 	private void reInit() {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
+		for (Iterator<DiscreteAction> iter = this.otherActions.iterator(); iter.hasNext(); ) {
 		    DiscreteAction element = iter.next();
 		}		
 	}
@@ -78,11 +78,11 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * Moves to the next method in the sequence.
 	 */
 	public void nextMethod(){
-		if (this.currentAction == this.baseAction){
-			this.it = this.depedentActions.iterator();
+		if (this.currentAction == this.firstAction){
+			this.it = this.otherActions.iterator();
 			this.currentAction = this.it.next();
-		}else if(this.currentAction == this.depedentActions.last()){
-			this.currentAction = this.baseAction;
+		}else if(this.currentAction == this.otherActions.last()){
+			this.currentAction = this.firstAction;
 			this.reInit();
 		}else {
 			this.currentAction = this.it.next();
@@ -95,7 +95,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * @param t time to remove
 	 */
 	public void spendTime(int t) {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
+		for (Iterator<DiscreteAction> iter = this.otherActions.iterator(); iter.hasNext(); ) {
 		    DiscreteAction element = iter.next();
 		    element.spendTime(t);
 		}
@@ -171,7 +171,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	 * @return true if there is a next action, false otherwise
 	 */
 	public boolean hasNext() {
-		return this.baseAction.hasNext() || !this.depedentActions.isEmpty();		
+		return this.firstAction.hasNext() || !this.otherActions.isEmpty();
 	}
 
 }

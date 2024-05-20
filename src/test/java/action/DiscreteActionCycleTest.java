@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiscreteActionDependentTest {
+class DiscreteActionCycleTest {
 
     public static class DummyObject {
         public Integer A() { return 1; }
@@ -24,17 +24,17 @@ class DiscreteActionDependentTest {
     private final DummyObject dependentObject2 = new DummyObject();
 
     // Déclaration des différentes actions
-    private DiscreteActionDependent action, actionAlmostDone, actionWithDependences;
+    private DiscreteActionCycle action, actionAlmostDone, actionWithDependences;
 
     @BeforeEach
     void setUp() {
-        action = new DiscreteActionDependent(
+        action = new DiscreteActionCycle(
             dummyObject, "A", new PeriodicTimer(30)
         );
-        actionAlmostDone = new DiscreteActionDependent(
+        actionAlmostDone = new DiscreteActionCycle(
             dummyObject, "A", new OneShotTimer(30)
         );
-        actionWithDependences = new DiscreteActionDependent(
+        actionWithDependences = new DiscreteActionCycle(
             dummyObject, "A", new PeriodicTimer(30)
         );
         actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10));
@@ -43,7 +43,7 @@ class DiscreteActionDependentTest {
 
     @Test
     void constructorsTest() throws NoSuchMethodException {
-        for (DiscreteActionDependent _action: new ArrayList<>(Arrays.asList(action, actionAlmostDone, actionWithDependences))) {
+        for (DiscreteActionCycle _action: new ArrayList<>(Arrays.asList(action, actionAlmostDone, actionWithDependences))) {
             // Les attributs des actions sont bien initialisés
             assertEquals(dummyObject, _action.getObject());
             assertEquals(dummyObject.getClass().getDeclaredMethod("A"), _action.getMethod());
@@ -54,15 +54,15 @@ class DiscreteActionDependentTest {
     @Test
     void addDependence() {
         // Check initial state
-        assertEquals(2, actionWithDependences.depedentActions.size());
+        assertEquals(2, actionWithDependences.otherActions.size());
 
         // Check valid dependence addition
         actionWithDependences.addDependence(dependentObject2, "A", new PeriodicTimer(10));
-        assertEquals(3, actionWithDependences.depedentActions.size());
+        assertEquals(3, actionWithDependences.otherActions.size());
 
         // Check same dependence addition
         assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10)));
-        assertEquals(3, actionWithDependences.depedentActions.size());
+        assertEquals(3, actionWithDependences.otherActions.size());
 
         // Check invalid arguments : method that does not exist
         assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "thisMethodDoesntExist", new OneShotTimer(10)));
@@ -83,7 +83,7 @@ class DiscreteActionDependentTest {
 
         // Check if actions increment
         actionWithDependences.nextMethod();
-        assertEquals(actionWithDependences.depedentActions.first(), actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.otherActions.first(), actionWithDependences.currentAction);
     }
 
     @Test
@@ -98,16 +98,16 @@ class DiscreteActionDependentTest {
         // Check if action is unchanged when timer is not expired
         actionWithDependences.spendTime(10);
         assertEquals(20, actionWithDependences.getCurrentLapsTime());
-        assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.firstAction, actionWithDependences.currentAction);
 
         // Check if action was changed when timer expires
         actionWithDependences.spendTime(20);
-        assertEquals(actionWithDependences.depedentActions.first(), actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.otherActions.first(), actionWithDependences.currentAction);
         assertEquals(10, actionWithDependences.getCurrentLapsTime());
 
         // Check if actions loop back when all dependent actions are expired
         actionWithDependences.spendTime(20);
-        assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.firstAction, actionWithDependences.currentAction);
 
         // TODO : Ajouter test pour max integer
     }
@@ -140,12 +140,12 @@ class DiscreteActionDependentTest {
     void next() {
         // Check if actions increment
         actionWithDependences.next();
-        assertEquals(actionWithDependences.depedentActions.first(), actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.otherActions.first(), actionWithDependences.currentAction);
         assertEquals(10, actionWithDependences.getCurrentLapsTime());
 
         // Check if actions loop back
         actionWithDependences.next().next();
-        assertEquals(actionWithDependences.baseAction, actionWithDependences.currentAction);
+        assertEquals(actionWithDependences.firstAction, actionWithDependences.currentAction);
         assertEquals(30, actionWithDependences.getCurrentLapsTime());
 
         // Check exception when action is done
