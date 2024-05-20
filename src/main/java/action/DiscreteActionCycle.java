@@ -20,22 +20,22 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	/**
 	 * The base action associated with this composite action.
 	 */
-	protected DiscreteAction firstAction;
+	protected DiscreteActionInterface firstAction;
 
 	/**
 	 * The set of dependent actions that need to be executed along with the base action.
 	 */
-	protected TreeSet<DiscreteAction> otherActions;
+	protected TreeSet<DiscreteActionInterface> otherActions;
 
 	/**
 	 * An iterator over the dependent actions set.
 	 */
-	private Iterator<DiscreteAction> it;
+	private Iterator<DiscreteActionInterface> it;
 
 	/**
 	 * The current action being executed.
 	 */
-	protected DiscreteAction currentAction;
+	protected DiscreteActionInterface currentAction;
 
 
 
@@ -56,12 +56,10 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	/**
 	 * Adds a dependence on the specified object, dependent method name, and timer.
 	 *
-	 * @param o the object on which the dependent method will be invoked
-	 * @param depentMethodName the name of the dependent method to be invoked
-	 * @param timerDependence the timer object providing the dependent laps time
+	 * @param action
 	 */
-	public void addDependence(Object o, String depentMethodName, Timer timerDependence) {
-		this.otherActions.add(new DiscreteAction(o, depentMethodName, timerDependence));
+	public void addDependence(DiscreteActionInterface action) {
+		this.otherActions.add(action);
 	}
 	
 
@@ -69,8 +67,8 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	 * Reinitializes the dependent actions.
 	 */
 	private void reInit() {
-		for (Iterator<DiscreteAction> iter = this.otherActions.iterator(); iter.hasNext(); ) {
-		    DiscreteAction element = iter.next();
+		for (Iterator<DiscreteActionInterface> iter = this.otherActions.iterator(); iter.hasNext(); ) {
+		    DiscreteActionInterface element = iter.next();
 		}
 	}
 
@@ -96,9 +94,8 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	 * @param t time to remove
 	 */
 	public void spendTime(int t) {
-		for (Iterator<DiscreteAction> iter = this.otherActions.iterator(); iter.hasNext(); ) {
-		    DiscreteAction element = iter.next();
-		    element.spendTime(t);
+		for (DiscreteActionInterface element : this.otherActions) {
+			element.spendTime(t);
 		}
 	}
 

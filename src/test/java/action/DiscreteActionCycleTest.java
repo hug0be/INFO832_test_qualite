@@ -37,8 +37,8 @@ class DiscreteActionCycleTest {
         actionWithDependences = new DiscreteActionCycle(
             dummyObject, "A", new PeriodicTimer(30)
         );
-        actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10));
-        actionWithDependences.addDependence(dependentObject2, "B", new OneShotTimer(10));
+        actionWithDependences.addDependence(dependentObject1);
+        actionWithDependences.addDependence(dependentObject2);
     }
 
     @Test
@@ -57,23 +57,23 @@ class DiscreteActionCycleTest {
         assertEquals(2, actionWithDependences.otherActions.size());
 
         // Check valid dependence addition
-        actionWithDependences.addDependence(dependentObject2, "A", new PeriodicTimer(10));
+        actionWithDependences.addDependence(dependentObject2);
         assertEquals(3, actionWithDependences.otherActions.size());
 
         // Check same dependence addition
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject1, "B", new PeriodicTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject1));
         assertEquals(3, actionWithDependences.otherActions.size());
 
         // Check invalid arguments : method that does not exist
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "thisMethodDoesntExist", new OneShotTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2));
         // Check invalid arguments : empty method name
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "", new OneShotTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2));
         // Check invalid arguments : null method name
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, null, new OneShotTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2));
         // Check invalid arguments : null object
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(null, "A", new OneShotTimer(10)));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(null));
         // Check invalid arguments : null timer
-        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2, "A", null));
+        assertThrows(IllegalArgumentException.class, () -> actionWithDependences.addDependence(dependentObject2));
     }
 
     @Test
