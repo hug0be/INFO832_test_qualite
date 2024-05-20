@@ -146,11 +146,10 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 * @return true if there is a next action, false otherwise
 	 */
 	public boolean hasNext() {
-		Boolean more=false;
 		if (this.timer != null && this.timer.hasNext()) {
-			more = true;
+			return true;
 		}
-		return more;		
+		return false;
 	}
 	
 
