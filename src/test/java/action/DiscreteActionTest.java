@@ -25,14 +25,14 @@ public class DiscreteActionTest {
     @Test
     void spendTime(){
         discreteActionlittle.spendTime(0);
-        assertEquals(7, (int) discreteActionlittle.getCurrentLapsTime());
+        assertEquals(7, discreteActionlittle.getCurrentLapsTime());
         discreteActionlittle.spendTime(5);
-        assertEquals(2, (int) discreteActionlittle.getCurrentLapsTime());
+        assertEquals(2, discreteActionlittle.getCurrentLapsTime());
         assertThrowsExactly(IllegalArgumentException.class, () -> discreteActionlittle.spendTime(-10));
         discreteActionBig.spendTime(2147483647);
-        assertEquals(0, (int) discreteActionBig.getCurrentLapsTime());
+        assertEquals(null, discreteActionBig.getCurrentLapsTime());
         discreteActionMid.spendTime(100000);
-        assertEquals(0, (int) discreteActionMid.getCurrentLapsTime());
+        assertEquals(0, discreteActionMid.getCurrentLapsTime());
     }
 
     @Test
