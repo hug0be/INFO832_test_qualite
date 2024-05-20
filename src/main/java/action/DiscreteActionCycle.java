@@ -40,14 +40,23 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 
 
 	/**
-	 * Constructs a series of dependent actions based on the specified object, base method name, and timer.
+	 * Constructs a series of dependent actions based on a DiscreteAction with the specified object, base method name, and timer.
 	 *
 	 * @param o the object on which the base method will be invoked
 	 * @param baseMethodName the name of the base method to be invoked
 	 * @param timerBase the timer object providing the base laps time
 	 */
 	public DiscreteActionCycle(Object o, String baseMethodName, Timer timerBase){
-		this.firstAction = new DiscreteAction(o, baseMethodName, timerBase);
+		this(new DiscreteAction(o, baseMethodName, timerBase));
+	}
+
+	/**
+	 * Constructs a series of dependent actions based on the specified object, base method name, and timer.
+	 *
+	 * @param firstAction the base action
+	 */
+	public DiscreteActionCycle(DiscreteActionInterface firstAction){
+		this.firstAction = firstAction;
 		this.otherActions = new TreeSet<>();
 		this.it = this.otherActions.iterator();
 		this.currentAction = this.firstAction;
