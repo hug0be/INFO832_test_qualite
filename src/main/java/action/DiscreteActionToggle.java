@@ -17,7 +17,7 @@ import timer.Timer;
  * @author flver
  * @see DiscreteActionInterface
  */
-public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
+public class DiscreteActionToggle implements DiscreteActionInterface {
 
 	/**
 	 * The action to be executed when the entity is turned on.
@@ -48,7 +48,7 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	 * @param off the name of the Off method
 	 * @param timerOff the timer for the Off method
 	 */
-	public DiscreteActionOnOffDependent(Object o, String on, Timer timerOn, String off, Timer timerOff){
+	public DiscreteActionToggle(Object o, String on, Timer timerOn, String off, Timer timerOff){
 		this.onAction = new DiscreteAction(o, on, timerOn);
 		this.offAction = new DiscreteAction(o, off, timerOff);
 		this.currentAction = this.offAction;
@@ -68,7 +68,7 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	 * @param datesOff the dates for the Off method
 	 * @see DateTimer
 	 */
-	public DiscreteActionOnOffDependent(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
+	public DiscreteActionToggle(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
 		this(o, on, new DateTimer(datesOn), off, new DateTimer(datesOff));
 	}
 
