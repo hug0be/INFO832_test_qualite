@@ -2,6 +2,8 @@ package action;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import timer.OneShotTimer;
 import timer.PeriodicTimer;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,22 +68,22 @@ public class DiscreteActionTest {
 
     @Test
     void compareTo(){
-        DiscreteAction discreteActionWithoutTime = new DiscreteAction();
-        discreteActionWithoutTime.compareTo( new DiscreteAction());
+        DiscreteAction discreteActionWithoutTime = new DiscreteAction(14,"toString", new OneShotTimer(0));
+        discreteActionWithoutTime.compareTo( new DiscreteAction(14,"toString", new OneShotTimer(0)));
         double inf = Double.POSITIVE_INFINITY;
     }
 
     @Test
     void hasNext(){
         assertTrue(discreteActionlittle.hasNext());
-        DiscreteAction discerteActionWithoutTime = new DiscreteAction();
+        DiscreteAction discerteActionWithoutTime = new DiscreteAction(14,"toString", new OneShotTimer(0));
         assertFalse(discerteActionWithoutTime.hasNext());
 
     }
 
     @Test
     void Next(){
-        DiscreteAction discerteActionWithoutTime = new DiscreteAction();
+        DiscreteAction discerteActionWithoutTime = new DiscreteAction(14,"toString", new OneShotTimer(0));
         assertThrows(NullPointerException.class, ()-> discerteActionWithoutTime.next());
         discreteActionlittle.next();
         assertEquals(7, discreteActionlittle.getCurrentLapsTime());

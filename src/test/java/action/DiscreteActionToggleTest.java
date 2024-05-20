@@ -9,7 +9,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiscreteActionOnOffDependentTest {
+class DiscreteActionToggleTest {
     public static class DummyObject {
         public Integer A() { return 1; }
         public Integer B() { return 2; }
@@ -19,30 +19,30 @@ class DiscreteActionOnOffDependentTest {
     private final DummyObject dummyObject = new DummyObject();
 
     // Déclaration des différentes actions
-    private DiscreteActionOnOffDependent action, almostDoneAction, treeSetAction, onFirstAction, onFirstTreeSetAction;
+    private DiscreteActionToggle action, almostDoneAction, treeSetAction, onFirstAction, onFirstTreeSetAction;
 
     @BeforeEach
     void setUp() {
-        action = new DiscreteActionOnOffDependent(
+        action = new DiscreteActionToggle(
             dummyObject, "A", new PeriodicTimer(30),  "B", new PeriodicTimer(10)
         );
-        almostDoneAction = new DiscreteActionOnOffDependent(
+        almostDoneAction = new DiscreteActionToggle(
             dummyObject, "A", new OneShotTimer(30), "B", new OneShotTimer(10)
         );
-        treeSetAction = new DiscreteActionOnOffDependent(
+        treeSetAction = new DiscreteActionToggle(
             dummyObject, "A", new TreeSet<>(Arrays.asList(30, 40)), "B", new TreeSet<>(Arrays.asList(10, 35))
         );
-        onFirstAction = new DiscreteActionOnOffDependent(
+        onFirstAction = new DiscreteActionToggle(
             dummyObject, "A", new OneShotTimer(10),  "B", new OneShotTimer(30)
         );
-        onFirstTreeSetAction = new DiscreteActionOnOffDependent(
+        onFirstTreeSetAction = new DiscreteActionToggle(
             dummyObject, "A", new TreeSet<>(List.of(10)),  "B", new TreeSet<>(List.of(30))
         );
     }
 
     @Test
     void constructorsUsualActionsTest() throws NoSuchMethodException {
-        for (DiscreteActionOnOffDependent _action: new ArrayList<>(Arrays.asList(treeSetAction, action))) {
+        for (DiscreteActionToggle _action: new ArrayList<>(Arrays.asList(treeSetAction, action))) {
             // Action par défaut doit être off
             assertEquals(_action.offAction, _action.currentAction);
             // Les attributs des actions sont bien initialisés
@@ -57,7 +57,7 @@ class DiscreteActionOnOffDependentTest {
 
     @Test
     void constructorsOnFirstActionsTest() {
-        for (DiscreteActionOnOffDependent _action: new ArrayList<>(Arrays.asList(onFirstTreeSetAction, onFirstAction))) {
+        for (DiscreteActionToggle _action: new ArrayList<>(Arrays.asList(onFirstTreeSetAction, onFirstAction))) {
             // Action par défaut doit être on, car "on" se produit avant "off"
             assertEquals(_action.onAction, _action.currentAction);
             // Les timers sont bien initialisés
