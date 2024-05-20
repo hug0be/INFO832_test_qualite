@@ -79,10 +79,10 @@ class DiscreteActionCycleTest {
     @Test
     void nextMethod() {
         // Check actions with no dependent actions
-        assertThrows(NoSuchElementException.class, () -> action.nextMethod());
+        assertThrows(NoSuchElementException.class, () -> action.next());
 
         // Check if actions increment
-        actionWithDependences.nextMethod();
+        actionWithDependences.next();
         assertEquals(actionWithDependences.otherActions.first(), actionWithDependences.currentAction);
     }
 

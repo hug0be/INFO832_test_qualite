@@ -71,13 +71,13 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	private void reInit() {
 		for (Iterator<DiscreteAction> iter = this.otherActions.iterator(); iter.hasNext(); ) {
 		    DiscreteAction element = iter.next();
-		}		
+		}
 	}
 
 	/**
 	 * Moves to the next method in the sequence.
 	 */
-	public void nextMethod(){
+	public DiscreteActionInterface next(){
 		if (this.currentAction == this.firstAction){
 			this.it = this.otherActions.iterator();
 			this.currentAction = this.it.next();
@@ -87,6 +87,7 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 		}else {
 			this.currentAction = this.it.next();
 		}
+		return this;
 	}
 
 	/**
@@ -99,13 +100,6 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 		    DiscreteAction element = iter.next();
 		    element.spendTime(t);
 		}
-	}
-
-	/**
-	 * Updates the laps time.
-	 */
-	public void updateTimeLaps() {
-		this.nextMethod();	
 	}
 
 	/**
@@ -152,17 +146,6 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	 */
 	public Boolean isEmpty() {
 		return !this.hasNext();
-	}
-
-	/**
-	 * Retrieves the next action in the sequence.
-	 *
-	 * @return the next action
-	 */
-	public DiscreteActionInterface next() {
-		Method method = this.getMethod();
-		Object object = this.getObject();
-		return this;
 	}
 
 	/**
