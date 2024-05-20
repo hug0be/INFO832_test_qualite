@@ -3,6 +3,7 @@ package discrete_behavior_simulator;
 import action.DiscreteAction;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import timer.OneShotTimer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +15,14 @@ public class DiscreteActionSimulatorTest {
     public void setUp() {
         simulator = new DiscreteActionSimulator();
     }
+
+    public static class DummyObject {
+        public Integer A() { return 1; }
+        public Integer B() { return 2; }
+    }
+
+    // Objet en commun avec toutes les actions
+    private final DummyObject dummyObject = new DummyObject();
 
 //    @Test
 //    public void testConstructor() {
@@ -30,7 +39,7 @@ public class DiscreteActionSimulatorTest {
     @Test
     public void testAddActionSingleInstance() {
         // Créer une instance de DiscreteAction
-        DiscreteAction action = new DiscreteAction();
+        DiscreteAction action = new DiscreteAction(dummyObject, "A", new OneShotTimer(10));
 
         // Ajouter l'action au simulateur
         simulator.addAction(action);
@@ -42,14 +51,14 @@ public class DiscreteActionSimulatorTest {
     @Test
     public void testAddActionMultipleInstances() {
         // Créer plusieurs instances de DiscreteAction
-        DiscreteAction action1 = new DiscreteAction();
-        DiscreteAction action2 = new DiscreteAction();
-        DiscreteAction action3 = new DiscreteAction();
+        DiscreteAction action1 = new DiscreteAction(dummyObject, "A", new OneShotTimer(10));
+        DiscreteAction action2 = new DiscreteAction(dummyObject, "B", new OneShotTimer(10));
+        DiscreteAction action3 = new DiscreteAction(dummyObject, "A", new OneShotTimer(10));
 
         // Ajouter les actions au simulateur
-        simulator.addAction(action3);
         simulator.addAction(action1);
         simulator.addAction(action2);
+        simulator.addAction(action3);
 
         // Vérifier si les actions sont triées dans la collection
         assertEquals(action1, simulator.actionsList.get(0));

@@ -45,6 +45,7 @@ public class DiscreteAction implements DiscreteActionInterface {
 			throw new IllegalArgumentException("Method " + m + " not found in class " + o.getClass().getName());
 		}
 		this.timer = timer;
+		this.lapsTime = this.timer.next();
 	}
 	
 	// ATTRIBUTION
@@ -55,9 +56,13 @@ public class DiscreteAction implements DiscreteActionInterface {
 	 * @param t time to remove
 	 */
 	public void spendTime(int t) {
+		if(t < 0) throw new IllegalArgumentException("Time to spend must be positive");
 		Integer old = this.lapsTime;
-		if(this.lapsTime != null) {
-			this.lapsTime -= t;
+		while (t > 0) {
+			if (this.lapsTime == 0 && !this.timer.hasNext()) break;
+			t--;
+			if (--this.lapsTime > 0) continue;
+			this.lapsTime = this.timer.next();
 		}
 		this.logger.log(Level.FINE, "[DA] operate spendTime on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime());
 	}
