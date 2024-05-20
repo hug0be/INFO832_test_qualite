@@ -1,7 +1,9 @@
 package action;
 
 import java.lang.reflect.Method;
-import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.TreeSet;
 
 import timer.Timer;
@@ -16,21 +18,15 @@ import timer.Timer;
  * @see DiscreteActionInterface
  */
 public class DiscreteActionCycle implements DiscreteActionInterface {
-
-	/**
-	 * The base action associated with this composite action.
-	 */
-	protected DiscreteActionInterface firstAction;
-
 	/**
 	 * The set of dependent actions that need to be executed along with the base action.
 	 */
-	protected TreeSet<DiscreteActionInterface> otherActions;
+	protected TreeSet<DiscreteActionInterface> actions;
 
 	/**
 	 * An iterator over the dependent actions set.
 	 */
-	private Iterator<DiscreteActionInterface> it;
+	private Queue<DiscreteActionInterface> it;
 
 	/**
 	 * The current action being executed.
@@ -53,48 +49,35 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	/**
 	 * Constructs a series of dependent actions based on the specified object, base method name, and timer.
 	 *
-	 * @param firstAction the base action
+	 * @param action the base action
 	 */
-	public DiscreteActionCycle(DiscreteActionInterface firstAction){
-		this.firstAction = firstAction;
-		this.otherActions = new TreeSet<>();
-		this.it = this.otherActions.iterator();
-		this.currentAction = this.firstAction;
+	public DiscreteActionCycle(DiscreteActionInterface action){
+		this.actions = new TreeSet<>();
+		this.addDependence(action);
+		this.it = new PriorityQueue<>(this.actions);
+		this.currentAction = this.it.poll();
 	}
 
 	/**
-	 * Adds a dependence on the specified object, dependent method name, and timer.
+	 * Adds a specified dependence
 	 *
-	 * @param action
+	 * @param action the new dependent action
 	 */
 	public void addDependence(DiscreteActionInterface action) {
-		this.otherActions.add(action);
-	}
-	
-
-	/**
-	 * Reinitializes the dependent actions.
-	 */
-	private void reInit() {
-		for (Iterator<DiscreteActionInterface> iter = this.otherActions.iterator(); iter.hasNext(); ) {
-		    DiscreteActionInterface element = iter.next();
-		}
+		if(!this.actions.add(action)) throw new IllegalArgumentException("Action already exists");
 	}
 
 	/**
 	 * Moves to the next method in the sequence.
 	 */
-	public DiscreteActionInterface next(){
-		if (this.currentAction == this.firstAction){
-			this.it = this.otherActions.iterator();
-			this.currentAction = this.it.next();
-		}else if(this.currentAction == this.otherActions.last()){
-			this.currentAction = this.firstAction;
-			this.reInit();
-		}else {
-			this.currentAction = this.it.next();
+	public DiscreteActionInterface next() {
+		// Reinitialize the iterator if the sequence is empty
+		if(this.it.isEmpty()) {
+			if(!this.hasNext()) throw new NoSuchElementException("No more actions");
+			this.it = new PriorityQueue<>(this.actions);
 		}
-		return this;
+		this.currentAction = this.it.poll();
+		return this.currentAction;
 	}
 
 	/**
@@ -103,9 +86,8 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	 * @param t time to remove
 	 */
 	public void spendTime(int t) {
-		for (DiscreteActionInterface element : this.otherActions) {
-			element.spendTime(t);
-		}
+		this.currentAction.spendTime(t);
+		if(this.currentAction.getCurrentLapsTime() == null && this.hasNext()) this.next();
 	}
 
 	/**
@@ -146,21 +128,14 @@ public class DiscreteActionCycle implements DiscreteActionInterface {
 	}
 
 	/**
-	 * Checks if the series of dependent actions is empty.
-	 *
-	 * @return true if there are no dependent actions, false otherwise
-	 */
-	public Boolean isEmpty() {
-		return !this.hasNext();
-	}
-
-	/**
 	 * Checks if there is a next action available in the sequence.
 	 *
 	 * @return true if there is a next action, false otherwise
 	 */
 	public boolean hasNext() {
-		return this.firstAction.hasNext() || !this.otherActions.isEmpty();
+		for (DiscreteActionInterface it : this.actions) {
+			if (it.hasNext()) return true;
+		}
+		return false;
 	}
-
 }
